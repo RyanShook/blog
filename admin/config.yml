@@ -1,8 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: RyanShook/blog
   branch: main
-  identity_url: "https://roaring-chaja-d85363.netlify.app/.netlify/identity"
-  gateway_url: "https://roaring-chaja-d85363.netlify.app/.netlify/git"
 
 site_url: https://ryanshook.github.io/blog
 display_url: https://ryanshook.github.io/blog
