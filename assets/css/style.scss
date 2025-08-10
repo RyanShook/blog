@@ -1,5 +1,8 @@
-<!-- Custom styles -->
-<style>
+---
+---
+
+@import "main";
+
 /* Custom styles for social media icons in footer */
 .social-icons {
   display: flex;
@@ -37,4 +40,3 @@
 [data-bs-theme="dark"] .social-icons .fa-x-twitter:hover {
   color: #ffffff !important;
 }
-</style>
