@@ -1,0 +1,37 @@
+/* Custom styles for social media icons in footer */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-icons a {
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.social-icons a:hover {
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+.social-icons .fa-x-twitter:hover {
+  color: #000000 !important;
+}
+
+.social-icons .fa-facebook:hover {
+  color: #1877f2 !important;
+}
+
+.social-icons .fa-linkedin:hover {
+  color: #0077b5 !important;
+}
+
+.social-icons .fa-instagram:hover {
+  color: #e4405f !important;
+}
+
+[data-bs-theme="dark"] .social-icons .fa-x-twitter:hover {
+  color: #ffffff !important;
+}
