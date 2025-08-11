@@ -2,6 +2,7 @@ backend:
   name: github
   repo: RyanShook/blog
   branch: main
+  base_url: https://blog.shoook.workers.dev
 
 site_url: https://ryanshook.github.io/blog
 display_url: https://ryanshook.github.io/blog
