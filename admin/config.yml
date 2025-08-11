@@ -11,7 +11,7 @@ media_folder: "assets/img/posts"
 public_folder: "/blog/assets/img/posts"
 
 collections:
-  - name: "blog"
+  - name: "posts"
     label: "Blog Posts"
     folder: "_posts"
     create: true
@@ -19,12 +19,7 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime", time_format: "HH:mm:ss Z", date_format: "YYYY-MM-DD"}
-      - {label: "Categories", name: "categories", widget: "list", default: ["blog"], hint: "Use square bracket format [category1, category2]"}
-      - {label: "Tags", name: "tags", widget: "list", required: false, hint: "Use square bracket format [tag1, tag2]"}
-      - {label: "Author", name: "author", widget: "hidden", default: "ryan"}
-      - {label: "Pin Post", name: "pin", widget: "boolean", default: false, required: false}
-      - {label: "Image", name: "image", widget: "object", required: false, fields: [
-          {label: "Path", name: "path", widget: "string", required: false, hint: "e.g., /assets/img/posts/filename.jpg"},
-          {label: "Alt Text", name: "alt", widget: "string", required: false}
-        ]}
+      - {label: "Categories", name: "categories", widget: "list", default: ["blog"]}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Author", name: "author", widget: "string", default: "ryan"}
       - {label: "Body", name: "body", widget: "markdown"}
