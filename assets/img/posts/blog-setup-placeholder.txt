@@ -1,0 +1,20 @@
+Blog Architecture:
+
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Sveltia CMS   │───▶│ Cloudflare Worker │───▶│ GitHub OAuth    │
+│   (Web Editor)  │    │   (Auth Handler)  │    │   (Authentication)
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+         │                       │                       │
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│ GitHub Repo     │───▶│ GitHub Actions   │───▶│ GitHub Pages    │
+│ (Blog Content)  │    │   (Jekyll Build) │    │   (Live Blog)   │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+
+Technologies Used:
+- Jekyll + Chirpy Theme (Static Site Generator)
+- GitHub Pages (Free Hosting)  
+- Sveltia CMS (Content Management)
+- Cloudflare Workers (Authentication)
+- All running on free tiers = $0/month
