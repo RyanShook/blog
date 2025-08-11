@@ -1,11 +1,14 @@
 ---
 title: Welcome to My Blog
 date: 2025-08-10 10:00:00 -0600
-categories: [blog, personal]
-tags: [welcome, introduction]
+categories:
+  - blog
+  - personal
+tags:
+  - welcome
+  - introduction
 author: ryan
 ---
-
 Welcome to my blog! I'm excited to have a space to share my thoughts and experiences.
 
 ## What You Can Expect
@@ -27,7 +30,3 @@ Blogging gives me a chance to:
 4. Practice writing regularly
 
 Thanks for reading, and I hope you'll follow along as I share more content!
-
----
-
-*This is my first blog post using the new CMS system. Pretty cool that I can edit this easily!*
