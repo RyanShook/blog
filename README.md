@@ -2,8 +2,7 @@
 
 A modern, professional blog built with Jekyll, Chirpy theme, and Sveltia CMS. Hosted for free on GitHub Pages with a clean content management interface.
 
-**🌐 Live Blog**: [ryanshook.github.io/blog](https://ryanshook.github.io/blog)  
-**✍️ CMS Admin**: [ryanshook.github.io/blog/admin](https://ryanshook.github.io/blog/admin)
+**🌐 Live Blog**: [ryanshook.org/blog](https://ryanshook.org/blog)
 
 ## Tech Stack
 
