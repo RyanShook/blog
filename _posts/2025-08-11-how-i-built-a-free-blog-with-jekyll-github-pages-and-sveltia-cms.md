@@ -1,11 +1,17 @@
 ---
 title: How I Built a Free Blog with Jekyll, GitHub Pages, and Sveltia CMS
-date: 2025-08-11 10:00:00 -0800
-categories: [technology, blogging]
-tags: [jekyll, github-pages, sveltia-cms, cloudflare, tutorial]
+date: 2025-08-10 22:05:00 -05:00
+categories:
+  - technology
+  - blogging
+tags:
+  - jekyll
+  - github-pages
+  - sveltia-cms
+  - cloudflare
+  - tutorial
 author: ryan
 ---
-
 I recently set up this blog using a completely free tech stack that gives me a professional, modern blogging platform without any ongoing costs. Here's how I built a blog with Jekyll, GitHub Pages, and a clean CMS interface - all hosted for free.
 
 ## The Tech Stack
@@ -103,19 +109,23 @@ I can write posts from my laptop, phone, or any device with a web browser.
 ## What I Learned
 
 ### GitHub Pages + Custom Themes
+
 GitHub Pages' default Jekyll support is limited. Using GitHub Actions for deployment unlocks full Jekyll functionality and theme support.
 
 ### CMS Authentication Complexity
+
 Most headless CMS solutions assume you're using their hosting platform. Setting up authentication for a GitHub Pages site required creativity - the Cloudflare Workers approach turned out to be the cleanest solution.
 
 ### The Power of Static Sites
+
 The performance and reliability of a static site is remarkable. No server maintenance, no security updates, no downtime concerns.
 
 ## Costs and Limitations
 
 **Ongoing costs**: $0/month  
-**Setup time**: ~2 hours for someone familiar with Git/GitHub  
+**Setup time**: \~2 hours for someone familiar with Git/GitHub  
 **Limitations**: 
+
 - No server-side functionality (but rarely needed for a blog)
 - GitHub Pages has bandwidth limits (generous for most blogs)
 - Requires some technical knowledge for initial setup
