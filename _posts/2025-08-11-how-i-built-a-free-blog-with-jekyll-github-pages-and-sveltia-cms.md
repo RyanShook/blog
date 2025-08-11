@@ -1,6 +1,6 @@
 ---
 title: How I Built a Free Blog with Jekyll, GitHub Pages, and Sveltia CMS
-date: 2025-08-10 22:05:00 -05:00
+date: 2025-08-09 22:10:00 -05:00
 categories:
   - technology
   - blogging
@@ -10,7 +10,7 @@ tags:
   - sveltia-cms
   - cloudflare
   - tutorial
-author: ryan
+author: Ryan Shook
 ---
 I recently set up this blog using a completely free tech stack that gives me a professional, modern blogging platform without any ongoing costs. Here's how I built a blog with Jekyll, GitHub Pages, and a clean CMS interface - all hosted for free.
 
