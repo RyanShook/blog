@@ -26,7 +26,7 @@ A modern, professional blog built with Jekyll, Chirpy theme, and Sveltia CMS. Ho
 ## Quick Start
 
 ### For Content Creators
-1. Visit [ryanshook.org/blog/admin](https://ryanshook.org/blog/admin)
+1. Visit the admin interface at `/admin` on the blog
 2. Login with GitHub
 3. Create and edit posts through the web interface
 4. Posts automatically save and publish
