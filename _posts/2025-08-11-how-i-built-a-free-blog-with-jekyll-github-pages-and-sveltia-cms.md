@@ -1,5 +1,5 @@
 ---
-title: How I Built a Free Blog with Jekyll, GitHub Pages, and Sveltia CMS
+title: 'Building a Personal Blog for Free: My Setup and Process'
 date: 2025-08-11 07:10:00 -05:00
 categories:
   - technology
