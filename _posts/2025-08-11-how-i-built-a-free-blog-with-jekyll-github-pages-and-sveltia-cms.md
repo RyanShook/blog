@@ -69,18 +69,10 @@ Sveltia CMS provides:
 
 A simple Cloudflare Worker handles GitHub OAuth authentication and secure token exchange. It’s free and lightweight.
 
-### 5. Custom Adjustments
-
-I added:
-
-- Footer with social links
-- Small design tweaks
-- Branded avatar
-
 ## **My Blogging Workflow**
 
 1. Visit `/admin` on my blog
-2. Log in with GitHub
+2. Log in with GitHub OAuth
 3. Write or edit in the CMS
 4. Save — commits to GitHub
 5. GitHub Actions rebuilds and deploys the site
@@ -89,11 +81,12 @@ I added:
 
 - GitHub Actions make Jekyll much more flexible.
 - Static sites are fast and low-maintenance.
+- Authentication was trickier than I first assumed.
 - Free-tier services can work together for a professional result.
 
 ## **Final Thoughts**
 
-If you have some technical comfort and want a blog that’s fast, reliable, and free to run, this setup is worth considering. For those less technical, managed platforms like WordPress.com or Ghost may be simpler but come with costs.
+If you have some technical comfort and want a blog that’s fast, reliable, and free to run, this setup is worth considering.
 
 **Resources:**
 
