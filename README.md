@@ -26,7 +26,7 @@ A modern, professional blog built with Jekyll, Chirpy theme, and Sveltia CMS. Ho
 ## Quick Start
 
 ### For Content Creators
-1. Visit [ryanshook.github.io/blog/admin](https://ryanshook.github.io/blog/admin)
+1. Visit [ryanshook.org/blog/admin](https://ryanshook.org/blog/admin)
 2. Login with GitHub
 3. Create and edit posts through the web interface
 4. Posts automatically save and publish
@@ -64,8 +64,9 @@ bundle exec jekyll serve
 1. **Access CMS**: Visit `/admin` on the blog
 2. **Authenticate**: One-click GitHub OAuth login
 3. **Create/Edit**: Rich text editor with Markdown support
-4. **Publish**: Changes automatically commit to repository
-5. **Deploy**: GitHub Actions rebuilds site (2-3 minutes)
+4. **Media Upload**: Upload images through the media library
+5. **Publish**: Changes automatically commit to repository
+6. **Deploy**: GitHub Actions rebuilds site (2-3 minutes)
 
 ### Post Format
 Posts use Jekyll front matter with Chirpy theme fields:
@@ -133,7 +134,7 @@ The blog uses Cloudflare Workers for CMS authentication:
 2. **Cloudflare Worker**: Processes OAuth flow securely
 3. **Sveltia CMS**: Connects to GitHub via authenticated API
 
-See the [setup blog post](https://ryanshook.github.io/blog/posts/how-i-built-a-free-blog-with-jekyll-github-pages-and-sveltia-cms/) for detailed implementation.
+See the [setup blog post](https://ryanshook.org/blog/posts/how-i-built-a-free-blog-with-jekyll-github-pages-and-sveltia-cms/) for detailed implementation.
 
 ## Contributing
 
@@ -141,6 +142,27 @@ This is a personal blog, but feel free to:
 - Report issues
 - Suggest improvements
 - Use as a template for your own blog
+
+## Troubleshooting
+
+### Common Issues
+
+**Images not displaying:**
+- Ensure images are uploaded through the CMS media library
+- Check that image paths don't have double `/blog/` prefixes
+- Verify images are committed to the repository
+- Wait 2-3 minutes for GitHub Actions to rebuild the site
+
+**CMS changes not saving:**
+- Check browser console for authentication errors
+- Verify GitHub OAuth token has proper permissions
+- Try logging out and back into the CMS
+
+**Site not updating after commits:**
+- Check GitHub Actions tab for build failures
+- Verify you're viewing the correct URL (ryanshook.org/blog)
+- Clear browser cache or try incognito mode
+- Allow 2-3 minutes for deployment to complete
 
 ## License
 
