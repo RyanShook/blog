@@ -8,7 +8,7 @@ site_url: https://ryanshook.github.io/blog
 display_url: https://ryanshook.github.io/blog
 
 media_folder: "assets/img/posts"
-public_folder: "/blog/assets/img/posts"
+public_folder: "/assets/img/posts"
 
 collections:
   - name: "posts"
