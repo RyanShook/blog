@@ -14,7 +14,7 @@ author: Ryan Shook
 ---
 ![](/blog/assets/img/posts/image.png)I recently set up this blog using a completely free tech stack that gives me a professional, modern blogging platform without any ongoing costs. Here's how I built a blog with Jekyll, GitHub Pages, and a clean CMS interface - all hosted for free.
 
-## The Tech Stack
+## The Tech Stack I'm Using
 
 **Website**: Jekyll with Chirpy theme  
 **Hosting**: GitHub Pages (free)  
