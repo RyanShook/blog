@@ -12,17 +12,15 @@ tags:
   - tutorial
 author: Ryan Shook
 ---
-## Building a Personal Blog for Free: My Setup and Process
+I recently created this blog that costs me nothing to run and allows me to edit and publish without editing code. It’s fast, customizable, and has a clean editing interface — all without monthly hosting fees. Here’s the exact setup and process I used.
 
-I recently created a professional, modern blog that costs me nothing to run. It’s fast, customizable, and has a clean editing interface — all without monthly hosting fees. Here’s the exact setup and process I used.
-
-### **The Stack**
+**The Stack**
 
 - **Website:** Jekyll + Chirpy theme
 - **Hosting:** GitHub Pages (free)
 - **CMS:** Sveltia CMS (successor to Netlify CMS)
 - **Authentication:** Cloudflare Workers (free tier)
-- **Domain:** Custom domain
+- **Domain:** Namecheap
 - **Cost:** $0/month
 
 ## **Why This Setup Works for Me**
