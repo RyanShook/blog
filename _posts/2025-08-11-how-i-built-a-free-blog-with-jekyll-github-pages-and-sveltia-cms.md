@@ -12,159 +12,93 @@ tags:
   - tutorial
 author: Ryan Shook
 ---
-![](/assets/img/posts/image.png)
+## Building a Personal Blog for Free: My Setup and Process
 
-I recently set up this blog using a completely free tech stack that gives me a professional, modern blogging platform without any ongoing costs. Here's how I built a blog with Jekyll, GitHub Pages, and a clean CMS interface - all hosted for free.
+I recently created a professional, modern blog that costs me nothing to run. It’s fast, customizable, and has a clean editing interface — all without monthly hosting fees. Here’s the exact setup and process I used.
 
-## The Tech Stack I'm Using
+### **The Stack**
 
-**Website**: Jekyll with Chirpy theme  
-**Hosting**: GitHub Pages (free)  
-**CMS**: Sveltia CMS (successor to Netlify CMS)  
-**Authentication**: Cloudflare Workers (free tier)  
-**Domain**: Custom domain support  
-**Cost**: $0/month
+- **Website:** Jekyll + Chirpy theme
+- **Hosting:** GitHub Pages (free)
+- **CMS:** Sveltia CMS (successor to Netlify CMS)
+- **Authentication:** Cloudflare Workers (free tier)
+- **Domain:** Custom domain
+- **Cost:** $0/month
 
-## Why This Stack?
+## **Why This Setup Works for Me**
 
-After researching various blogging platforms, I chose this setup because:
+- **No ongoing costs** – Uses free service tiers.
+- **Full control** – All content and code are mine.
+- **User-friendly editing** – CMS works on desktop and mobile.
+- **Fast loading** – Static site generation ensures performance.
+- **Clean design** – Chirpy theme provides a professional look.
+- **Version control** – All content is tracked in Git.
 
-- **Zero ongoing costs** - Everything runs on free tiers
-- **Full control** - I own my content and can customize everything
-- **Modern CMS** - Easy post editing from any device, including mobile
-- **Fast performance** - Static site generation means lightning-fast loading
-- **Professional appearance** - Chirpy theme provides a clean, technical blog look
-- **Git-based** - All content is version controlled and backed up
+## **The Setup Process**
 
-## The Setup Process
+### 1. Jekyll + Chirpy Theme
 
-### 1. Blog Foundation: Jekyll + Chirpy Theme
+Jekyll powers the blog and the Chirpy theme adds:
 
-I started with Jekyll, a static site generator that GitHub Pages supports natively. Instead of a basic Jekyll setup, I chose the **Chirpy theme** which provides:
-
-- Clean, professional design with dark/light mode toggle
-- Built-in search functionality
-- Table of contents generation
-- Syntax highlighting for code
-- Categories and tags organization
+- Light/dark mode toggle
+- Search functionality
+- Table of contents
+- Syntax highlighting
 - SEO optimization
-- PWA (Progressive Web App) support
+- Progressive Web App support
 
-The theme is specifically designed for technical writing and blogging, making it perfect for sharing thoughts on technology and development.
+### 2. GitHub Pages Hosting
 
-### 2. Free Hosting: GitHub Pages
+Steps:
 
-GitHub Pages provides free static site hosting directly from your GitHub repository. The setup is straightforward:
+1. Create a GitHub repository
+2. Enable **GitHub Pages**
+3. Use **GitHub Actions** for Jekyll builds
 
-- Create a repository for your blog
-- Enable GitHub Pages in repository settings
-- Choose "GitHub Actions" as the source (required for Chirpy theme)
-- Your blog is automatically deployed whenever you push changes
+### 3. Sveltia CMS for Content Editing
 
-The custom GitHub Actions workflow handles the Jekyll build process, including all the Chirpy theme's advanced features that aren't supported by GitHub's default Jekyll build.
+Sveltia CMS provides:
 
-### 3. Content Management: Sveltia CMS
+- Clean interface
+- Mobile-friendly editing
+- Rich text + Markdown support
+- Image management
+- Git-based commits directly to the repo
 
-The biggest challenge was finding a user-friendly way to create and edit blog posts. I wanted a CMS interface rather than editing Markdown files directly. After trying several options, I landed on **Sveltia CMS**.
+### 4. Authentication with Cloudflare Workers
 
-Sveltia CMS is a modern successor to Netlify CMS, offering:
+A simple Cloudflare Worker handles GitHub OAuth authentication and secure token exchange. It’s free and lightweight.
 
-- **Clean, intuitive interface** - Better UX than its predecessors
-- **Mobile editing** - I can write posts from my phone
-- **Rich text editor** with Markdown support
-- **Media management** for images and files
-- **Git-based** - All changes are committed to your repository
-- **No vendor lock-in** - Your content stays in your repository
+### 5. Custom Adjustments
 
-### 4. Authentication: Cloudflare Workers
+I added:
 
-The trickiest part was authentication. Most CMS solutions require a backend service, but I wanted to stay in the "free tier" ecosystem. The solution was **Cloudflare Workers**.
+- Footer with social links
+- Small design tweaks
+- Branded avatar
 
-I deployed a simple OAuth handler to Cloudflare Workers (free tier) that:
+## **My Blogging Workflow**
 
-- Handles GitHub OAuth authentication
-- Provides secure token exchange
-- Enables the CMS to authenticate users and commit to GitHub
-- Runs entirely on Cloudflare's free tier (100,000 requests/day)
+1. Visit `/admin` on my blog
+2. Log in with GitHub
+3. Write or edit in the CMS
+4. Save — commits to GitHub
+5. GitHub Actions rebuilds and deploys the site
 
-### 5. Custom Styling and Features
+## **What I Learned**
 
-To make the blog my own, I added:
+- GitHub Actions make Jekyll much more flexible.
+- Static sites are fast and low-maintenance.
+- Free-tier services can work together for a professional result.
 
-- **Custom footer** with social media icons (Twitter/X, Facebook, LinkedIn, Instagram)
-- **Removed theme attribution** for a cleaner look
-- **Custom avatar** from my main website
-- **Responsive design** adjustments
+## **Final Thoughts**
 
-## The Workflow
+If you have some technical comfort and want a blog that’s fast, reliable, and free to run, this setup is worth considering. For those less technical, managed platforms like WordPress.com or Ghost may be simpler but come with costs.
 
-My current blogging workflow is incredibly smooth:
+**Resources:**
 
-1. **Writing**: Open `ryanshook.github.io/blog/admin` on any device
-2. **Authentication**: One-click login with GitHub
-3. **Editing**: Rich text editor with live preview
-4. **Publishing**: Hit save - changes automatically commit to GitHub
-5. **Deployment**: GitHub Actions rebuilds and deploys the site (2-3 minutes)
-
-I can write posts from my laptop, phone, or any device with a web browser.
-
-## What I Learned
-
-### GitHub Pages + Custom Themes
-
-GitHub Pages' default Jekyll support is limited. Using GitHub Actions for deployment unlocks full Jekyll functionality and theme support.
-
-### CMS Authentication Complexity
-
-Most headless CMS solutions assume you're using their hosting platform. Setting up authentication for a GitHub Pages site required creativity - the Cloudflare Workers approach turned out to be the cleanest solution.
-
-### The Power of Static Sites
-
-The performance and reliability of a static site is remarkable. No server maintenance, no security updates, no downtime concerns.
-
-## Costs and Limitations
-
-**Ongoing costs**: $0/month  
-**Setup time**: \~2 hours for someone familiar with Git/GitHub  
-**Limitations**: 
-
-- No server-side functionality (but rarely needed for a blog)
-- GitHub Pages has bandwidth limits (generous for most blogs)
-- Requires some technical knowledge for initial setup
-
-## Would I Recommend This Stack?
-
-Absolutely, if you:
-
-- Want full control over your blog
-- Prefer writing in Markdown
-- Don't mind a bit of initial technical setup
-- Value performance and reliability
-- Want to avoid ongoing subscription costs
-
-For non-technical users, a hosted solution like WordPress.com or Ghost might be easier, but you'll pay monthly fees and have less control.
-
-## The Result
-
-I now have a professional blog that:
-
-- Loads instantly
-- Looks great on all devices
-- Has a modern CMS interface
-- Costs nothing to maintain
-- Is fully under my control
-- Can handle traffic spikes effortlessly
-
-The combination of Jekyll's static site generation, GitHub's reliable hosting, and Sveltia's modern CMS interface creates a blogging platform that rivals paid solutions - all while keeping my content in my own Git repository.
-
-## Resources
-
-If you want to set up something similar:
-
-- **Jekyll**: [jekyllrb.com](https://jekyllrb.com)
-- **Chirpy Theme**: [github.com/cotes2020/jekyll-theme-chirpy](https://github.com/cotes2020/jekyll-theme-chirpy)
-- **Sveltia CMS**: [github.com/sveltia/sveltia-cms](https://github.com/sveltia/sveltia-cms)
-- **GitHub Pages**: [pages.github.com](https://pages.github.com)
-- **Cloudflare Workers**: [workers.cloudflare.com](https://workers.cloudflare.com)
-
-The entire setup process took about 2 hours and resulted in a blog that's both powerful and completely free to operate.
+- [Jekyll](https://jekyllrb.com/)
+- [Chirpy Theme](https://github.com/cotes2020/jekyll-theme-chirpy)
+- [Sveltia CMS](https://github.com/sveltia/sveltia-cms)
+- [GitHub Pages](https://pages.github.com/)
+- [Cloudflare Workers](https://workers.cloudflare.com/)
