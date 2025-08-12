@@ -4,8 +4,8 @@ backend:
   branch: main
   base_url: https://blog.shoook.workers.dev
 
-site_url: https://ryanshook.github.io/blog
-display_url: https://ryanshook.github.io/blog
+site_url: https://ryanshook.org/blog
+display_url: https://ryanshook.org/blog
 
 media_folder: "assets/img/posts"
 public_folder: "/assets/img/posts"
