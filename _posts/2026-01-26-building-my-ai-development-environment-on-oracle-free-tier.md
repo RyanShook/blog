@@ -19,6 +19,8 @@ author: Ryan Shook
 
 I've been experimenting with AI-assisted development and wanted a persistent, powerful environment where I could run multiple AI tools 24/7 — without paying for hosting. After exploring various options, I built a complete AI development stack on Oracle Cloud's free tier that's been running flawlessly for weeks.
 
+**Why not just buy a Mac mini?** A Mac mini M2 Pro with comparable specs (16GB RAM, upgradable to 24GB) costs $1,299 upfront plus ~$10-20/month in electricity, requires physical space, and ties you to one location. Oracle's free tier gives you similar performance, 24/7 cloud access from anywhere, automatic backups, and zero hardware maintenance — all for $0/month.
+
 The best part? Oracle's "Always Free" ARM instances are genuinely impressive: 4 CPU cores, 24GB RAM, 200GB storage, and 10TB monthly bandwidth. All free. Forever.
 
 Here's exactly how I built it, what I learned, and why this setup has fundamentally changed how I develop software.
@@ -31,12 +33,11 @@ Here's exactly how I built it, what I learned, and why this setup has fundamenta
 - **Specs:** 4 OCPUs, 24GB RAM, 45GB boot volume
 - **OS:** Ubuntu 24.04 (aarch64)
 - **Region:** us-ashburn-1 (Virginia)
-- **Public IP:** 129.213.80.158
-- **Tailscale VPN:** 100.87.187.12 (for secure mobile access)
+- **Tailscale VPN:** For secure mobile access from anywhere
 
 **Core AI Tools:**
-- **[Claude Code](https://claude.ai/code)** v2.1.14 - Anthropic's official CLI for interactive coding
-- **[Clawdbot](https://clawdbot.com)** v2026.1.23-1 - Personal AI assistant with multi-channel support
+- **[Claude Code](https://claude.ai/code)** - Anthropic's official CLI for interactive coding
+- **[Clawdbot](https://clawdbot.com)** - Personal AI assistant with multi-channel support
 - **[Happy Engineering](https://happy.engineering)** - Mobile-first Claude Code interface with persistent sessions
 
 **Workflow Automation:**
@@ -45,10 +46,10 @@ Here's exactly how I built it, what I learned, and why this setup has fundamenta
 - **Cloudflare DNS** - Domain management for custom subdomains
 
 **Development Tools:**
-- **Node.js** v22.22.0 (via fnm for version management)
-- **GitHub CLI (gh)** v2.45.0 - Direct GitHub integration
-- **Homebrew** v5.0.11 - Package manager for Linux
-- **Docker** v29.1.5 + Compose v5.0.2 - Container orchestration
+- **Node.js** (via fnm for version management)
+- **GitHub CLI (gh)** - Direct GitHub integration
+- **Homebrew** - Package manager for Linux
+- **Docker + Docker Compose** - Container orchestration
 - **Modern CLI tools:** ripgrep, fzf, bat, fd, tree
 
 **Security & Access:**
@@ -151,7 +152,7 @@ curl -fsSL https://tailscale.com/install.sh | sh
 sudo tailscale up
 ```
 
-This creates a zero-config VPN that lets me SSH from my phone via Termius without exposing ports. The server gets a stable Tailscale IP (100.87.187.12) that works from anywhere.
+This creates a zero-config VPN that lets me SSH from my phone via Termius without exposing ports. The server gets a stable Tailscale IP ([tailscale-ip]) that works from anywhere.
 
 **Why Tailscale over direct SSH?**
 - **No port forwarding** - Works through NAT and firewalls
@@ -387,7 +388,7 @@ Now Claude Code can trigger workflows, query results, and integrate with any ser
 I use Cloudflare for DNS management with custom subdomains:
 
 **DNS Records:**
-- `n8n.ryanshook.org` → A record → 129.213.80.158 (direct, no proxy)
+- `n8n.ryanshook.org` → A record → [your-public-ip] (direct, no proxy)
 
 **Why Not Cloudflare Tunnel?**
 
@@ -908,7 +909,7 @@ Tailscale creates an encrypted mesh VPN:
 - **Split DNS** - Tailscale-only hostnames (rs-oracle)
 
 **Access control:**
-- I can SSH via Tailscale IP (100.87.187.12) from phone/laptop
+- I can SSH via Tailscale IP ([tailscale-ip]) from phone/laptop
 - No public internet access required for Tailscale connections
 - Tailscale admin console can revoke device access remotely
 
@@ -1069,6 +1070,21 @@ Let's be honest about costs, including the services I pay for:
 
 ### Cost Comparison - How This Stacks Up
 
+**Mac mini Server (popular alternative):**
+```
+Mac mini M2 Pro (16GB RAM):         $1,299 (upfront)
+Upgrade to 24GB RAM:                +$200 (upfront)
+Monthly electricity (~100W):        $15/month
+Internet (dedicated IP):            $10/month
+Physical space & cooling:           n/a
+────────────────────────────────────────────
+Total upfront:                      $1,499
+Monthly ongoing:                    $25/month
+Break-even vs. Oracle:              60 months (5 years)
+Limitations:                        Single location, requires
+                                    maintenance, no redundancy
+```
+
 **Equivalent AWS infrastructure:**
 ```
 t4g.xlarge (4 vCPU, 16 GB RAM):    $120/month
@@ -1106,9 +1122,28 @@ Domain:                              $1.25/month
 Total (excluding Claude Pro):        $1.25/month
 ```
 
+**Annual savings vs. Mac mini:** ~$300/year (after paying off $1,499 upfront)
 **Annual savings vs. AWS:** ~$1,650/year
 **Annual savings vs. DigitalOcean:** ~$560/year
 **Annual savings vs. Linode:** ~$420/year
+
+**Mac mini vs. Oracle Free Tier:**
+
+The Mac mini comparison deserves special attention since many developers consider buying a home server:
+
+| Factor | Mac mini | Oracle Free Tier |
+|--------|----------|------------------|
+| Upfront cost | $1,499 | $0 |
+| Monthly cost | ~$25 | $0 |
+| Accessibility | Local network only (VPN needed) | Internet everywhere |
+| Redundancy | None (hardware failure = downtime) | Oracle's infrastructure |
+| Maintenance | You handle hardware issues | Oracle handles it |
+| Scalability | Fixed specs | Can resize/add instances |
+| Physical space | Requires desk space, cooling | None |
+| Noise | Silent but present | None |
+| Portability | Tied to one location | Access from anywhere |
+
+**Verdict:** Unless you specifically need a local machine (home automation hub, local AI model inference, etc.), Oracle's free tier is objectively better for remote development work.
 
 ### What About Paid AI Services?
 
