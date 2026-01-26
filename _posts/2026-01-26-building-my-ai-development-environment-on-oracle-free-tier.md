@@ -44,13 +44,7 @@ Here's exactly how I built it, what I learned, and why this setup has fundamenta
 - **[n8n](https://n8n.io)** - Self-hosted workflow automation with MCP server integration
 - **nginx** - Reverse proxy with automatic SSL via Let's Encrypt
 - **Cloudflare DNS** - Domain management for custom subdomains
-
-**Development Tools:**
-- **Node.js** (via fnm for version management)
-- **GitHub CLI (gh)** - Direct GitHub integration
-- **Homebrew** - Package manager for Linux
 - **Docker + Docker Compose** - Container orchestration
-- **Modern CLI tools:** ripgrep, fzf, bat, fd, tree
 
 **Security & Access:**
 - **Tailscale** - Zero-config VPN for secure remote access from anywhere
@@ -303,6 +297,26 @@ tmux new-session -d -s happy bash -l -c 'happy & claude'
 
 The connection persists even after closing SSH. I can now code on my phone with full Claude Code capabilities - file editing, git operations, command execution, everything.
 
+**Important: Tmux Sessions and Reboots**
+
+**Understanding tmux limitations:**
+- tmux sessions are stored in RAM, not on disk
+- When the server reboots, all tmux sessions are lost
+- This includes the Happy session and any active Claude Code conversations
+
+**What happens on reboot:**
+1. Server restarts (automatic security updates at 3 AM)
+2. systemd automatically starts Happy service
+3. Happy creates a new tmux session with a fresh QR code
+4. You must re-scan the QR code in the Happy app to reconnect
+5. Claude Code conversation history is preserved (backed up nightly)
+
+**To minimize disruption:**
+- Conversation history is exported nightly at 3 AM CST
+- After a reboot, you can review past conversations via Git
+- Context can be restored by reading previous conversation exports
+- Most reboots happen during automatic security updates (3 AM)
+
 ### 6. n8n Workflow Automation with MCP Integration
 
 [n8n](https://n8n.io) is a self-hosted workflow automation platform (like Zapier/Make) that I run in Docker.
@@ -411,11 +425,19 @@ For a personal development environment, the simplicity of direct DNS won out. Th
 
 One of the most important aspects of this setup is the comprehensive backup strategy. Everything is automated to run without manual intervention.
 
+**Three-tier backup approach:**
+1. **Google Drive** - Full daily backup of home directory (8 AM UTC)
+2. **Git repositories** - Continuous version control for configs and scripts
+3. **Conversation exports** - Nightly archive of Claude Code sessions (3 AM CST)
+
+This means if the server is destroyed, I can rebuild everything in ~30 minutes.
+
 ### Daily Google Drive Backup
 
 **What:** Complete home directory backup to Google Drive
 **When:** 2:00 AM CST daily (8:00 AM UTC)
 **How:** rclone with smart filtering
+**Why this timing:** Runs after automatic security updates (3 AM) complete
 
 ```bash
 # ~/backup-to-gdrive.sh
@@ -447,8 +469,9 @@ fi
 ### Conversation History Export
 
 **What:** Claude Code conversation archive
-**When:** Nightly 3 AM CST
+**When:** Nightly 3 AM CST (9 AM UTC)
 **Where:** `~/rs-oracle/conversation-history/`
+**Why it matters:** Preserves context even when tmux sessions are lost
 
 ```bash
 # ~/sync-conversations.sh
@@ -466,7 +489,14 @@ if [[ -n $(git status --porcelain) ]]; then
 fi
 ```
 
-This creates a searchable archive of all coding sessions organized by date. The index.json file makes it easy to grep through past conversations.
+**What this solves:**
+- tmux sessions (and active Claude conversations) are lost on reboot
+- Conversation exports persist forever in Git
+- After a reboot, I can review yesterday's work from the exported history
+- Searchable archive organized by date with `index.json` for easy grepping
+
+**Real-world example:**
+Server reboots at 3 AM for security updates. By 3:05 AM, conversations are exported and committed to Git. When I SSH in at 9 AM, the tmux session is fresh, but I can run `cat ~/rs-oracle/conversation-history/2026-01-26.json` to see everything from yesterday.
 
 ### Script Backup
 
@@ -491,17 +521,23 @@ cd ~/rs-oracle && git add scripts/ && git commit -m "Auto-sync scripts"
 
 **Cron Schedule:**
 
-All automation is configured via crontab:
+All automation is configured via crontab and runs automatically:
 
 ```bash
 # Edit crontab
 crontab -e
 
-# Backup schedules
-0 8 * * * /home/ubuntu/backup-to-gdrive.sh  # 8 AM UTC = 2 AM CST
-0 9 * * * /home/ubuntu/rs-oracle/scripts/sync-scripts.sh
-0 9 * * * /home/ubuntu/sync-conversations.sh
+# Backup schedules (times in UTC)
+0 9 * * * /home/ubuntu/sync-conversations.sh           # 3 AM CST - Export conversations
+0 9 * * * /home/ubuntu/rs-oracle/scripts/sync-scripts.sh  # 3 AM CST - Backup scripts
+0 8 * * * /home/ubuntu/backup-to-gdrive.sh             # 2 AM CST - Full system backup
 ```
+
+**Why these times?**
+- Automatic security updates run at 3 AM and may reboot the server
+- Conversation exports run at 3 AM (before potential reboot) to capture the day's work
+- Google Drive backup runs at 2 AM to ensure it completes before updates
+- If a reboot happens, all data from the previous day is already safely backed up
 
 ### Disaster Recovery Strategy
 
@@ -518,11 +554,25 @@ If the server is destroyed, I can recreate everything from backups:
 **Time to full recovery:** ~30 minutes
 
 All critical data is either:
-- Backed up to Google Drive (daily)
-- Version controlled in GitHub (continuous)
+- Backed up to Google Drive (daily snapshots)
+- Version controlled in GitHub (continuous commits)
 - Stored in external services (Anthropic API keys, GitHub tokens)
 
 Nothing important lives only on the server.
+
+**What survives vs. what doesn't:**
+
+| Data Type | Persists Through Reboot? | Backup Location |
+|-----------|-------------------------|-----------------|
+| Configuration files | ✅ Yes (on disk) | Google Drive + Git |
+| Docker containers | ✅ Yes (auto-restart) | n8n data in volume |
+| Clawdbot workspace | ✅ Yes (on disk) | Google Drive + Git |
+| tmux sessions | ❌ No (RAM only) | N/A - sessions are ephemeral |
+| Active Claude conversations | ❌ No (in tmux) | Exported nightly to Git |
+| Cron jobs | ✅ Yes (crontab) | Google Drive |
+| SSH keys | ✅ Yes (on disk) | Google Drive + 1Password |
+
+**Key insight:** The only thing lost on reboot is the active tmux session. Everything else—configs, data, services—automatically restarts. And conversation history is backed up nightly, so even that context is recoverable.
 
 ## My Development Workflow - A Day in the Life
 
