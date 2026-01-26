@@ -25,6 +25,27 @@ The best part? Oracle's "Always Free" ARM instances are genuinely impressive: 4 
 
 Here's exactly how I built it, what I learned, and why this setup has fundamentally changed how I develop software.
 
+## TL;DR
+
+**What I Built:** A complete AI development environment on Oracle's Always Free tier with Claude Code, Clawdbot AI assistant, mobile coding via Happy app, and n8n workflow automation.
+
+**Hardware:** 4 ARM CPU cores, 24GB RAM, 200GB storage, 10TB bandwidth/month - all free forever.
+
+**Monthly Cost:** $0 for infrastructure (vs $138/month AWS or $1,499 upfront Mac mini).
+
+**Key Features:**
+- Code from anywhere (phone, laptop, desktop) with full Claude Code capabilities
+- Persistent AI conversations that survive across devices and days
+- Self-hosted AI assistant accessible via WhatsApp/Telegram/Discord
+- Automated nightly backups to Google Drive + GitHub
+- Zero maintenance - automatic security updates and service restarts
+
+**Time Investment:** ~8 hours initial setup, ~1 hour/month ongoing maintenance.
+
+**Who Should Try This:** Developers who want 24/7 AI-assisted development, enjoy learning infrastructure, and value data ownership. Not suitable for production workloads or if you need enterprise support.
+
+**The Catch:** Getting an ARM instance can take patience due to capacity constraints. Once you have it, though, it's rock solid.
+
 ## The Complete Stack
 
 **Infrastructure:**
