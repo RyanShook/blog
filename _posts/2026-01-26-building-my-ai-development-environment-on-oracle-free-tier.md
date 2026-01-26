@@ -1,6 +1,6 @@
 ---
 title: 'Building My AI Development Environment on Oracle Free Tier'
-date: 2026-01-26 23:05:00 -06:00
+date: 2026-01-26 17:00:00 -06:00
 categories:
   - technology
   - ai
