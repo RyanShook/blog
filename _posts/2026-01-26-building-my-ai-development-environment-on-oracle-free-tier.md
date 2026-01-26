@@ -1562,6 +1562,14 @@ I respond to every genuine message. Don't be shy.
 
 ---
 
+## About the Author
+
+**Ryan Shook** is a software developer passionate about AI-assisted development, cloud infrastructure, and building developer tools. He shares his experiments and learnings on his [personal website](https://ryanshook.org) and [GitHub](https://github.com/RyanShook).
+
+This blog post documents a real production setup he uses daily for mobile-first AI development. Connect with him on GitHub or visit his site to see more projects.
+
+---
+
 *This blog post was written with assistance from Claude Code, running on the very infrastructure it describes. Meta, right?*
 
 *Generated with [Claude Code](https://claude.ai/code) via [Happy](https://happy.engineering)*
