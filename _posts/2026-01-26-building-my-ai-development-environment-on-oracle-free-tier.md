@@ -57,7 +57,7 @@ What I needed wasn't a better laptop or a hosted IDE. I needed an environment th
 
 Claude Code on my laptop was already working great. I just needed it to run somewhere that never shut down.
 
-## The Discovery: Oracle's Actually Free ARM Instances
+## Oracle's Actually Free ARM Instances
 
 Oracle's "Always Free" tier is the only truly free cloud option that lets you run a real server. AWS and GCP offer free credits or limited trials, but Oracle gives you actual infrastructure with no expiration:
 
