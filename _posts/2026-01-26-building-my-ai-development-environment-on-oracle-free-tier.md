@@ -36,8 +36,6 @@ Here's the story of how I built it, what actually works, and why it's changed ho
 
 **Who Should Try:** Developers who want AI-assisted development 24/7, don't mind tinkering, and value never losing context. Not for production workloads.
 
-**The Catch:** Getting the ARM instance took 3 days of retrying. Oracle's capacity is tight.
-
 ## The Problem: Laptop Development Doesn't Work for AI
 
 AI coding assistants are incredible. Claude Code, GitHub Copilot, cursor—they're genuinely transformative. But they all share the same fatal flaw: they forget.
@@ -71,8 +69,6 @@ The specs rival my MacBook Pro. ARM Ampere processors are fast, power-efficient,
 
 For $0/month, I can run a server with more RAM than my laptop, accessible 24/7 from anywhere.
 
-The hard part? Actually getting an instance. ARM capacity is tight. It took me three days of retrying across different availability zones before one succeeded. But once I had it, the machine was mine.
-
 ## The Stack: Free Tools, Persistent Context
 
 Here's what I'm running:
@@ -96,16 +92,9 @@ Here's what I'm running:
 
 The insight: You don't need expensive infrastructure. You need *persistent* infrastructure. A $0/month server that never stops is worth infinitely more than a $200/month laptop that goes to sleep.
 
-## Building It: Three Days of Stubborn Persistence
+## Building It: A Weekend Project
 
-Getting the Oracle instance was the hardest part. Their ARM capacity is genuinely constrained. I tried:
-- Three different availability domains (AD-1, AD-2, AD-3)
-- Multiple times of day (early morning seemed best)
-- Different configurations (2 cores vs 4 cores)
-
-On day three, at 6 AM EST, my 4-core instance request finally succeeded. The feeling was like winning a raffle.
-
-From there, setup was straightforward:
+Setup was straightforward once I had the Oracle instance:
 1. **Tailscale** for secure access (`curl install.sh | sh; sudo tailscale up`)
 2. **Claude Code** via npm (`npm install -g @anthropic-ai/claude-code`)
 3. **Happy** - Install the iOS app, SSH into server, run `happy`, scan QR code
