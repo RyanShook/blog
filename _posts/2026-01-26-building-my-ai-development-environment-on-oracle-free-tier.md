@@ -48,9 +48,11 @@ For casual coding, that's fine. But for real work—refactoring a complex codeba
 
 I tried syncing conversation histories manually. I tried keeping detailed notes. I tried leaving my laptop open 24/7. None of it worked.
 
-What I needed wasn't a better laptop. I needed an environment that *never went away*. A server that's always running, with AI sessions that persist indefinitely, accessible from any device.
+I also tried the hosted AI coding platforms—Poke, Manus, Zo Computer. They solve some of these problems: cloud-based environments, persistent sessions, browser access. But the tradeoffs weren't worth it for me. The cost adds up ($30-50/month on top of AI subscription), I lose control over my environment, and I'm locked into their tooling and workflows. The hosted solutions felt like renting someone else's setup instead of owning mine.
 
-And I needed it to cost nothing, because this is an experiment, not a business expense.
+What I needed wasn't a better laptop or a hosted IDE. I needed an environment that *never went away*, that I controlled completely, and that cost basically nothing. A server that's always running, with AI sessions that persist indefinitely, accessible from any device.
+
+Claude Code on my laptop was already working great. I just needed it to run somewhere that never shut down.
 
 ## The Discovery: Oracle's Actually Free ARM Instances
 
