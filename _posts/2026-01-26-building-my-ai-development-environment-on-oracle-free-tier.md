@@ -77,7 +77,6 @@ For $0/month, I can run a server with more RAM than my laptop, accessible 24/7 f
 ## The Stack: Free Tools, Persistent Context
 
 ![AI Development Stack]({{ '/assets/img/ai-dev-stack.jpg' | relative_url }})
-*The ingredients: mixing free-tier infrastructure with AI tools and automation*
 
 Here's what I'm running:
 
