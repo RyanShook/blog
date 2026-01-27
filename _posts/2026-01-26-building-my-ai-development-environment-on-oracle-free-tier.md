@@ -12,6 +12,9 @@ tags:
   - free-tier
   - mobile-dev
 author: Ryan Shook
+image:
+  path: /assets/img/ai-dev-stack.jpg
+  alt: AI Development Stack - Free infrastructure with AI tools and automation
 ---
 
 I've been experimenting with AI-assisted development and hit a wall: my laptop wasn't enough. Not because of CPU or RAM—but because the moment I closed the lid, I lost my context. Switch devices? Start over. Need to debug something on my phone during lunch? Forget it.
