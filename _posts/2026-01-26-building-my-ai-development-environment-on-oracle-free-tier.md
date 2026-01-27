@@ -59,16 +59,15 @@ Claude Code on my laptop was already working great. I just needed it to run some
 
 ## The Discovery: Oracle's Actually Free ARM Instances
 
-I'd heard about Oracle Cloud's free tier but assumed it was the usual bait-and-switch: "free" for 12 months, then surprise bills. AWS and GCP burnt me on that before.
+Oracle's "Always Free" tier is the only truly free cloud option that lets you run a real server. AWS and GCP offer free credits or limited trials, but Oracle gives you actual infrastructure with no expiration:
 
-Turns out, Oracle's "Always Free" tier is legitimately different:
 - **4 ARM Ampere cores** (can split across up to 4 instances)
 - **24GB RAM total** (I maxed it in one beefy instance)
 - **200GB storage** (boot volumes + block volumes)
 - **10TB bandwidth/month** (way more than I'll ever use)
 - **Truly always free** - Not a trial. Not "free credits." Just free.
 
-I was skeptical. I signed up expecting to find the catch. Three weeks later, my Oracle bill is still $0.00. The free tier doesn't expire. It doesn't require a credit card (initially). It just... works.
+Three weeks in, my Oracle bill is still $0.00. The free tier doesn't expire. It doesn't require a credit card (initially). It just... works.
 
 The specs rival my MacBook Pro. ARM Ampere processors are fast, power-efficient, and surprisingly compatible with modern software. Docker images work. Node.js flies. Ubuntu runs native.
 
