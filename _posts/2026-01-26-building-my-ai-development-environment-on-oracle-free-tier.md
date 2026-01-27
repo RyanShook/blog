@@ -128,141 +128,20 @@ The setup enables a few workflows that weren't possible before:
 
 The real advantage isn't the individual tools—it's that the environment is always there, always warm, and costs $20/month.
 
-## What Changed: The Real Impact
+## Getting Started
 
-### Context Persistence is a Superpower
-
-The biggest surprise: how much productivity comes from never losing context.
-
-Claude remembers the weird edge case we discussed last week. It remembers why we chose SQLite over PostgreSQL. It remembers the architectural decision to keep services stateless.
-
-This isn't just convenient. It fundamentally changes how I approach complex problems. I don't need to keep the entire system in my head. I don't need extensive notes. Claude remembers for me.
-
-I now start refactoring projects that would've terrified me before. Because I know if I get interrupted—if I need to step away for a day—I can pick up exactly where I left off.
-
-### Mobile Development Actually Works
-
-I was deeply skeptical about coding on a phone. It's one thing to review PRs. It's another to actually write, test, and commit production code.
-
-With Happy + Claude, it works. Not for everything—complex refactoring across 50 files still needs a real keyboard. But for:
-- Code review and PR feedback
-- Quick bug fixes
-- Responding to production issues
-- Drafting new features
-
-...my iPhone is surprisingly capable.
-
-The 80/20 rule applies: 80% of developer tasks work fine on mobile with AI assistance. The remaining 20% benefit from large screens and traditional IDEs.
-
-This changes my relationship with work. I'm not "always on call." But if production breaks while I'm out, I can meaningfully contribute from my phone.
-
-### Automation Enables Fearless Experimentation
-
-With nightly backups to Google Drive and GitHub, I experiment more freely.
-
-I'll try risky refactoring. I'll test cutting-edge tools. I'll completely restructure my deployment setup.
-
-Why? Because I can restore everything in 30 minutes if something breaks.
-
-This psychological safety unlocks creativity. I'm not paralyzed by "what if I break it?" Because breaking it is cheap.
-
-## Cost Reality: The Honest Accounting
-
-**What I Actually Pay:**
-- Oracle Cloud infrastructure: $0/month (Always Free tier)
-- Claude Pro subscription: $20/month (was already paying for this)
-- Domain (ryanshook.org): $1.25/month (optional, could use Tailscale hostname)
-
-**Total: $21.25/month**
-
-**What I'm Not Paying:**
-- AWS equivalent: ~$138/month (t4g.xlarge + EBS + bandwidth + IP)
-- DigitalOcean equivalent: $48/month
-- Mac mini server: $1,499 upfront + $25/month electricity
-
-**Savings vs AWS:** ~$1,650/year
-
-The comparison to a Mac mini is particularly interesting. Many developers consider buying a Mac mini to run as a home server. But:
-- **Mac mini**: $1,499 upfront, $25/month ongoing, tied to one location, requires physical space and maintenance
-- **Oracle free tier**: $0 upfront, $0/month ongoing, accessible from anywhere, Oracle handles hardware failures
-
-Unless you specifically need local hardware (home automation hub, local AI model inference, etc.), the cloud option is objectively better.
-
-## Should You Build This?
-
-**Great fit if you:**
-- Want 24/7 AI-assisted development without the cost
-- Value context persistence across devices
-- Don't mind 8 hours of initial tinkering
-- Are comfortable with SSH, basic Linux, and command-line tools
-- Want to learn cloud infrastructure, Docker, and networking
-
-**Not a fit if you:**
-- Need enterprise support or SLAs
-- Want zero maintenance (hosted solutions are easier)
-- Have limited technical experience (this has a learning curve)
-- Require production-grade reliability
-- Don't trust Oracle's "Always Free" commitment
-
-**My verdict:** This is a 9/10 setup for personal development.
-
-**Pros:**
-- $0/month infrastructure cost
-- Persistent AI environment accessible from any device
-- Full control and customization
-- Genuinely productive mobile development
-- Valuable learning experience
-
-**Cons:**
-- Getting the Oracle instance takes patience (capacity constraints)
-- Initial setup requires technical comfort
-- Not production-ready (by design)
-- Oracle's UI is dated compared to AWS
-
-What would make it 10/10? Easier instance provisioning and better Oracle documentation.
-
-## Getting Started: If You Want to Try
-
-Don't try to build everything at once. Start small:
+If you want to try this setup:
 
 **Week 1:** Spin up the Oracle instance (be patient with capacity), install Claude Code, set up Tailscale for mobile access.
 
 **Week 2:** Try the Happy app on your phone. Configure automatic backups to Google Drive and GitHub.
 
-**Month 2:** Add tools as needed—Clawdbot for messaging, n8n for automation, whatever fits your workflow.
+**Later:** Add tools as needed—Clawdbot for messaging, n8n for automation, whatever fits your workflow.
 
 The stack is modular. Each component adds value independently. You don't need everything to benefit from the always-on, persistent environment.
 
 **Key resources:**
-- [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/) - Sign up here
-- [Claude Code](https://claude.ai/code) - Anthropic's official CLI
-- [Happy Engineering](https://happy.engineering) - Mobile interface
-- [Tailscale](https://tailscale.com) - Zero-config VPN
-
-## Final Thoughts
-
-After three weeks living on this setup, I'm not going back.
-
-The cost savings are nice. The technical learning is valuable. But the real win is never losing context.
-
-I work differently now. I'm more willing to tackle complex projects because I know the environment remembers. I'm more productive on mobile because Claude bridges the gap between phone and laptop.
-
-This isn't a replacement for local development. It's a complement. When I need raw compute or multiple monitors, I use my desktop. When I need mobility and persistence, I use the server.
-
-For $20/month (infrastructure is free), I have an AI development environment that's always on, always accessible, and never forgets.
-
-If that sounds valuable to you, it's worth the weekend to build it.
-
----
-
-## About the Author
-
-**Ryan Shook** is a software developer passionate about AI-assisted development, cloud infrastructure, and building developer tools. He shares his experiments and learnings on his [personal website](https://ryanshook.org) and [GitHub](https://github.com/RyanShook).
-
-This blog post documents a real production setup he uses daily for mobile-first AI development. Connect with him on GitHub or visit his site to see more projects.
-
----
-
-*This blog post was written with assistance from Claude Code, running on the very infrastructure it describes. Meta, right?*
-
-*Generated with [Claude Code](https://claude.ai/code) via [Happy](https://happy.engineering)*
+- [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)
+- [Claude Code](https://claude.ai/code)
+- [Happy Engineering](https://happy.engineering)
+- [Tailscale](https://tailscale.com)
