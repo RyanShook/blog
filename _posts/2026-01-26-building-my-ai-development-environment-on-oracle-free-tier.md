@@ -106,51 +106,23 @@ The entire technical setup took maybe 8 hours spread across a weekend. Most of t
 
 The magic isn't in the complexity. It's in the simplicity. Once running, the system just *works*. Claude sessions persist. Tmux keeps everything alive. Backups run automatically at 3 AM. Security updates install themselves.
 
+**About those conversation backups:** Every night at 3 AM, a cron job exports my Claude Code conversations to GitHub. This solves a critical problem: tmux sessions live in RAM, so if the server reboots (automatic security updates), active conversations disappear. But the nightly exports mean I can always review yesterday's architectural discussions or restore context after a reboot. It's like having perfect memory of every decision and conversation.
+
 I haven't manually intervened in two weeks.
 
-## How I Actually Use It: A Day in the Life
+## How I Actually Use It
 
-**Morning (Commute - iPhone via Happy app):**
+The setup enables a few workflows that weren't possible before:
 
-I open the Happy app while waiting for my coffee. Claude remembers yesterday's conversation about refactoring the authentication system. "Did you think about the OAuth expiration handling?" it asks.
+**Mobile coding actually works.** I've reviewed PRs and pushed bug fixes from my iPhone using the Happy app. The key is Claude remembers context across devices—I can start a conversation on my laptop, continue on my phone, and pick it back up later without re-explaining anything.
 
-I hadn't. We discuss token refresh strategies. Claude suggests an approach, I approve, and it writes the code. By the time I reach my desk, the refactor is done, committed, and ready for review.
+**Context never dies.** SSH into the server, attach to the tmux session, and Claude remembers the conversation from three days ago. No "where was I?" moment. The conversation backups mean even if the server reboots, I can review past discussions and restore context.
 
-Total time: 10 minutes on my phone, standing in line at Starbucks.
+**Quick AI queries via WhatsApp.** Clawdbot lets me ask quick technical questions without opening a laptop. It's genuinely useful for checking logs or getting syntax reminders while away from my desk.
 
-**Midday (Laptop - Full Claude Code session):**
+**Workflow automation.** n8n can trigger from Claude via MCP, which means I can ask Claude to "run the backup workflow" or "post to social media" and it actually happens.
 
-I SSH into the server (`ssh ubuntu@rs-oracle` via Tailscale) and attach to my Claude session. The context is exactly where I left it three hours ago. No re-explanation needed.
-
-We're debugging a weird race condition in the WebSocket handler. Claude suggests adding logging, we test it, find the issue (connection closing before message flush), and fix it. Two commits later, the bug is gone.
-
-**Afternoon (Between meetings - iPhone via Clawdbot):**
-
-Production error alert on Slack. I message my Clawdbot on WhatsApp: "Check server logs for errors in the last hour."
-
-It queries the database, pulls stack traces, and summarizes: "5 timeout errors on user-service, looks like the database connection pool is exhausted."
-
-I reply: "Increase pool size to 50 in production config."
-
-Clawdbot drafts the change, I approve via quick message, and it's deployed in 2 minutes. Crisis averted without opening my laptop.
-
-**Evening (Desktop - Building workflows):**
-
-I open n8n's web interface and build a workflow: when I push to the blog repo, automatically generate social media posts and schedule them.
-
-I test it by asking Claude: "Trigger the post-blog workflow." Claude invokes n8n via MCP (Model Context Protocol), the workflow runs, and posts appear on Twitter and LinkedIn.
-
-The composability is wild. Claude can trigger anything n8n supports—which is basically everything.
-
-**Key Advantages:**
-
-What makes this work isn't the tools. It's the *persistence*.
-
-Claude remembers our conversation from Monday. When I switch devices, the context follows me. There's no "wait, where was I?" moment. No reexplaining. No lost threads.
-
-I code from my phone during lunch. I review PRs on my iPad while watching TV. I debug production issues from my iPhone while grocery shopping.
-
-And it all costs $20/month.
+The real advantage isn't the individual tools—it's that the environment is always there, always warm, and costs $20/month.
 
 ## What Changed: The Real Impact
 
