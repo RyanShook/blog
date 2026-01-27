@@ -67,9 +67,9 @@ Oracle's "Always Free" tier is the only truly free cloud option that lets you ru
 - **10TB bandwidth/month** (way more than I'll ever use)
 - **Truly always free** - Not a trial. Not "free credits." Just free.
 
-Three weeks in, my Oracle bill is still $0.00. The free tier doesn't expire. It doesn't require a credit card (initially). It just... works.
+Three weeks in, my Oracle bill is still $0.00. The free tier doesn't expire. It just... works.
 
-The specs rival my MacBook Pro. ARM Ampere processors are fast, power-efficient, and surprisingly compatible with modern software. Docker images work. Node.js flies. Ubuntu runs native.
+ARM Ampere processors are fast, power-efficient, and surprisingly compatible with modern software. Docker images work. Node.js flies. Ubuntu runs native.
 
 For $0/month, I can run a server with more RAM than my laptop, accessible 24/7 from anywhere.
 
