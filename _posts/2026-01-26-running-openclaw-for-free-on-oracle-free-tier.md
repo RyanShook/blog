@@ -13,8 +13,8 @@ tags:
   - openclaw
 author: Ryan Shook
 image:
-  path: /assets/img/ai-dev-stack.jpg
-  alt: AI Development Stack - Free infrastructure with AI tools and automation
+  path: /assets/img/openclaw-oracle-lobster.jpg
+  alt: Openclaw lobster on Oracle Cloud logo - Running AI agents on free infrastructure
 ---
 
 I was about to buy a $1,499 Mac mini M2 Pro to run AI agents on an always-on server. Instead, I used Oracle's free tier and got 4 ARM cores with 24GB RAM for $0/month.
