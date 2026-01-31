@@ -41,7 +41,7 @@ Oracle's free tier doesn't expire. These resources remain available as long as t
 In the Oracle Cloud Console:
 
 1. **Compute > Instances > Create Instance**
-2. **Name:** openclaw-server (or whatever you want)
+2. **Name:** ai-server (or whatever you want)
 3. **Image:** Ubuntu 24.04 (Canonical-Ubuntu-24.04-aarch64)
 4. **Shape:** 
    - Click "Change Shape"
@@ -90,7 +90,7 @@ sudo tailscale up
 
 You can now SSH via the Tailscale IP (100.x.x.x) instead of the public IP.
 
-### Step 5: Install Node.js (for Openclaw)
+### Step 5: Install Node.js
 
 ```bash
 # Install fnm (Fast Node Manager)
@@ -162,9 +162,10 @@ rclone config
 # Create backup script
 cat > ~/backup-to-gdrive.sh << 'EOF'
 #!/bin/bash
-rclone sync ~/openclaw-workspace gdrive:openclaw-backups \
+rclone sync ~/ gdrive:server-backups \
   --exclude node_modules/** \
   --exclude .git/objects/** \
+  --exclude .cache/** \
   --log-file ~/backup.log
 EOF
 
@@ -179,26 +180,6 @@ crontab -e
 
 # Add this line (runs backup daily at 3 AM):
 0 3 * * * /home/ubuntu/backup-to-gdrive.sh
-```
-
-**Self-healing: Auto-restart Openclaw on failure:**
-
-```bash
-# Create watchdog script
-cat > ~/openclaw-watchdog.sh << 'EOF'
-#!/bin/bash
-if ! pgrep -f "openclaw.*gateway" > /dev/null; then
-    cd ~ && openclaw gateway --daemon
-    echo "$(date): Openclaw gateway restarted" >> ~/watchdog.log
-fi
-EOF
-
-chmod +x ~/openclaw-watchdog.sh
-
-# Add to crontab (checks every 5 minutes)
-crontab -e
-# Add line:
-*/5 * * * * /home/ubuntu/openclaw-watchdog.sh
 ```
 
 ### Step 9: Install Openclaw
