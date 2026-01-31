@@ -83,9 +83,9 @@ Here's what I'm running:
 - **Tailscale** - Zero-config VPN so I can SSH from anywhere securely
 
 **AI Development Tools:**
-- **Claude Code** ($20/month Claude Pro subscription) - The centerpiece, Anthropic's official CLI with full coding capabilities
-- **Happy** (free iOS/Android app) - Mobile interface for Claude Code, works surprisingly well on phone
-- **Clawdbot** (free, self-hosted) - AI assistant accessible via WhatsApp/Telegram for quick questions
+- **Claude Code** ($20/month Claude Pro subscription) - Official CLI with full coding capabilities
+- **Happy** (free iOS/Android app) - Mobile Claude Code interface
+- **Openclaw** (free, self-hosted) - Multi-channel AI assistant (Telegram, WhatsApp, iMessage, Slack, Discord) with persistent sessions, file access, browser control, and workflow automation
 
 **Persistence & Automation:**
 - **n8n** (free, self-hosted) - Workflow automation that can trigger from Claude via MCP
@@ -99,14 +99,24 @@ The insight: You don't need expensive infrastructure. You need *persistent* infr
 ## Building It: A Weekend Project
 
 Setup was straightforward once I had the Oracle instance:
+
 1. **Tailscale** for secure access (`curl install.sh | sh; sudo tailscale up`)
 2. **Claude Code** via npm (`npm install -g @anthropic-ai/claude-code`)
 3. **Happy** - Install the iOS app, SSH into server, run `happy`, scan QR code
-4. **Automatic backups** - One cron job syncing to Google Drive, another exporting Claude conversations to GitHub
+4. **Openclaw** - The game-changer for persistent AI access:
+   ```bash
+   npm install -g openclaw@latest
+   openclaw onboard  # Interactive setup wizard
+   ```
+   The onboard wizard handles everything: model auth, channel connections (I went with Telegram), workspace setup, and skill installation. Within 10 minutes, I had an AI assistant accessible from my phone via Telegram, with full file system access and browser control.
 
-I added Clawdbot for quick AI questions from my phone. I set up n8n for workflow automation (blog posts to social media, GitHub monitoring, etc.). I configured automatic security updates.
+Key Openclaw features I configured:
+- **Gmail/Calendar integration** - OAuth setup lets it check emails and manage my calendar
+- **Heartbeat monitoring** - Checks inbox and calendar every 30 minutes, alerts me proactively
+- **Receipt processing** - Forward receipts with "receipt" in subject → automatically saved to Google Drive organized by date
+- **Security hardening** - File permissions locked down, fail2ban protecting SSH
 
-The entire technical setup took maybe 8 hours spread across a weekend. Most of that was waiting for package installs and reading documentation.
+I added n8n for workflow automation and configured automatic backups. The entire setup took maybe 8 hours, mostly waiting for installs.
 
 The magic isn't in the complexity. It's in the simplicity. Once running, the system just *works*. Claude sessions persist. Tmux keeps everything alive. Backups run automatically at 3 AM. Security updates install themselves.
 
@@ -122,9 +132,9 @@ The setup enables a few workflows that weren't possible before:
 
 **Context never dies.** SSH into the server, attach to the tmux session, and Claude remembers the conversation from three days ago. No "where was I?" moment. The conversation backups mean even if the server reboots, I can review past discussions and restore context.
 
-**Quick AI queries via WhatsApp.** Clawdbot lets me ask quick technical questions without opening a laptop. It's genuinely useful for checking logs or getting syntax reminders while away from my desk.
+**Openclaw from anywhere.** Via Telegram, I can ask technical questions, check server status, process receipts, or trigger workflows—all from my phone. It has access to the file system, can run shell commands, and remembers context across conversations.
 
-**Workflow automation.** n8n can trigger from Claude via MCP, which means I can ask Claude to "run the backup workflow" or "post to social media" and it actually happens.
+**Automated monitoring.** Openclaw's heartbeat system checks my email and calendar every 30 minutes, alerts me to important messages, and can even pull down latest code changes or analyze projects on command.
 
 The real advantage isn't the individual tools—it's that the environment is always there, always warm, and costs $20/month.
 
@@ -132,16 +142,17 @@ The real advantage isn't the individual tools—it's that the environment is alw
 
 If you want to try this setup:
 
-**Week 1:** Spin up the Oracle instance (be patient with capacity), install Claude Code, set up Tailscale for mobile access.
+**Week 1:** Spin up the Oracle instance (be patient with capacity), install Openclaw (`npm install -g openclaw@latest`), run `openclaw onboard` and connect your messaging app (Telegram is easiest).
 
-**Week 2:** Try the Happy app on your phone. Configure automatic backups to Google Drive and GitHub.
+**Week 2:** Add Claude Code and Happy for mobile coding. Configure Openclaw heartbeats for automated monitoring.
 
-**Later:** Add tools as needed—Clawdbot for messaging, n8n for automation, whatever fits your workflow.
+**Later:** Set up Gmail/Calendar integration, receipt processing, or workflow automation as needed.
 
-The stack is modular. Each component adds value independently. You don't need everything to benefit from the always-on, persistent environment.
+The stack is modular. Openclaw alone is valuable for always-on AI access. Add other components as your workflow demands.
 
 **Key resources:**
 - [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)
+- [Openclaw](https://openclaw.ai) (formerly Clawdbot)
 - [Claude Code](https://claude.ai/code)
 - [Happy Engineering](https://happy.engineering)
 - [Tailscale](https://tailscale.com)
