@@ -17,11 +17,11 @@ image:
   alt: Openclaw lobster on Oracle Cloud logo - Running AI agents on free infrastructure
 ---
 
-I was about to buy a $1,499 Mac mini M2 Pro to run AI agents on an always-on server. Instead, I used Oracle's free tier and got 4 ARM cores with 24GB RAM for $0/month.
+I wasn't about to spend $1,500 on a new Mac mini just to try out Openclaw (formerly Moltbot/Clawdbot), but I knew I wanted an always-on AI agent. Something that wouldn't forget context when I closed my laptop, that I could access from my phone via Telegram, and that could actually *do* things—check email, manage files, run scripts.
 
-Browser-based AI tools like ChatGPT and Claude don't persist context between sessions or across devices. Openclaw runs on your own server with full file system access, remembers conversations across reboots, and connects to multiple messaging platforms.
+Oracle's Always Free tier solved the hardware problem: 4 ARM cores and 24GB RAM for $0/month. No trials, no expiration. Just free infrastructure that runs 24/7.
 
-This guide walks through setting up Openclaw on Oracle's Always Free tier.
+This guide walks through the complete setup—from spinning up the instance to having a working AI assistant in your pocket.
 
 ## The Setup: Step-by-Step
 
