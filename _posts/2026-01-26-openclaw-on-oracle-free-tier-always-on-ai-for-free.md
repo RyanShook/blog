@@ -1,5 +1,5 @@
 ---
-title: 'Openclaw on Oracle's Free Tier: Always-On AI for $0/month'
+title: "Openclaw on Oracle's Free Tier: Always-On AI for $0/month"
 date: 2026-01-26 17:00:00 -06:00
 categories:
   - technology
