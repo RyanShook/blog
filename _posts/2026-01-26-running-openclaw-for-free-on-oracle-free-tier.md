@@ -17,27 +17,11 @@ image:
   alt: AI Development Stack - Free infrastructure with AI tools and automation
 ---
 
-I was about to buy a $1,499 Mac mini M2 Pro just to have an always-on server for running AI agents. Then I realized: why spend $1,500 when I can get the same thing for free?
+I was about to buy a $1,499 Mac mini M2 Pro to run AI agents on an always-on server. Instead, I used Oracle's free tier and got 4 ARM cores with 24GB RAM for $0/month.
 
-**The problem with ChatGPT and Claude:** They forget. Close the browser, lose context. Switch devices, start over. They're amazing tools, but they live in isolated sessions with no memory, no persistence, and no access to your actual environment.
+Browser-based AI tools like ChatGPT and Claude don't persist context between sessions or across devices. Openclaw runs on your own server with full file system access, remembers conversations across reboots, and connects to multiple messaging platforms.
 
-**Openclaw changes everything.** It's not just a chatbot—it's a full AI assistant with persistent context, file system access, browser control, and workflow automation. Most importantly, it runs on *your* infrastructure, accessible from any device, and remembers everything.
-
-And thanks to Oracle's Always Free tier, that infrastructure costs $0/month.
-
-## Why Openclaw > ChatGPT/Claude
-
-**Persistence:** Conversations survive server reboots, device switches, and weeks of inactivity. Ask a question today, pick up the conversation next week.
-
-**Context:** Full access to your files, git repos, and running services. It's not hallucinating about your codebase—it's reading it.
-
-**Always-on:** The server never sleeps. Set up heartbeat monitoring and it proactively checks your email, calendar, or deployment status.
-
-**Multi-channel:** Chat via Telegram, WhatsApp, iMessage, Slack, Discord—wherever you already are. No app switching.
-
-**Control:** Self-hosted, open source, runs on infrastructure you own. No vendor lock-in, no usage limits beyond your Claude API subscription.
-
-This isn't "ChatGPT but self-hosted." It's an entirely different paradigm—a persistent AI agent with shell access, living on a server you control.
+This guide walks through setting up Openclaw on Oracle's Always Free tier.
 
 ## The Setup: Step-by-Step
 
@@ -50,7 +34,7 @@ Here's exactly how I built it. Total time: ~3 hours. Monthly cost: $0 for infras
 3. Create account (requires credit card for verification, but it's never charged)
 4. Complete verification
 
-**Important:** Oracle's free tier is "Always Free" - no trial period, no expiration. Once created, these resources are yours forever.
+Oracle's free tier doesn't expire. These resources remain available as long as the account is active.
 
 ### Step 2: Spin Up the Max Free Instance
 
@@ -73,7 +57,7 @@ In the Oracle Cloud Console:
 
 Wait 3-5 minutes for the instance to provision. Note the public IP address.
 
-**Capacity issues?** Oracle's free ARM instances are popular. If you get "out of capacity," try a different availability domain or wait 24 hours and retry. It's worth the wait.
+**Capacity issues?** If you get "out of capacity," try a different availability domain or wait 24 hours and retry.
 
 ### Step 3: Initial Server Access
 
@@ -92,7 +76,7 @@ sudo apt install -y git curl wget build-essential
 
 ### Step 4: Install Tailscale (Secure Remote Access)
 
-Tailscale creates a private VPN so you can SSH from anywhere without exposing ports:
+Tailscale provides secure remote access without exposing SSH to the public internet:
 
 ```bash
 # Install Tailscale
@@ -104,7 +88,7 @@ sudo tailscale up
 # Visit the auth URL it prints, log in, approve device
 ```
 
-Now you can SSH via Tailscale IP (100.x.x.x) instead of the public IP. Much more secure.
+You can now SSH via the Tailscale IP (100.x.x.x) instead of the public IP.
 
 ### Step 5: Install Node.js (for Openclaw)
 
@@ -276,7 +260,7 @@ openclaw gateway --daemon
 
 If it responds, you're done!
 
-### Step 11: Enable Heartbeat Monitoring (Optional but Awesome)
+### Step 11: Enable Heartbeat Monitoring (Optional)
 
 Edit `~/openclaw-workspace/HEARTBEAT.md`:
 
@@ -306,37 +290,32 @@ Configure heartbeat interval in `~/.openclaw/openclaw.json`:
 }
 ```
 
-Now Openclaw checks in every 30 minutes and can proactively alert you.
+Openclaw will now run checks every 30 minutes and send alerts when needed.
 
 ## What You Get
 
-**Total cost:** $0/month for infrastructure + $20/month Claude Pro
+**Cost:** $0/month infrastructure + $20/month Claude Pro subscription
 
-**What you have:**
-- Always-on AI assistant accessible from any device
-- Persistent context that survives reboots and device switches
-- Full file system and command access
-- Automated backups and self-healing
-- Multi-channel access (Telegram, plus add more later)
-- 4 ARM cores and 24GB RAM to run whatever else you need
-
-**Compared to buying a $1,500 Mac mini to run AI agents:** You just saved $1,500 and got more RAM.
+**Specs:**
+- 4 ARM Ampere cores
+- 24GB RAM
+- 200GB storage
+- Always-on AI assistant via Telegram
+- Persistent conversations across sessions
+- File system and shell access
+- Automated backups
 
 ## Next Steps
 
-Once the basics are running:
+Additional features you can add:
 
-**Add more channels:** WhatsApp, Slack, Discord, iMessage (requires setup)
+- More channels: WhatsApp, Slack, Discord, iMessage
+- Gmail/Calendar integration via OAuth
+- Receipt processing with Google Drive storage
+- Workflow automation with n8n
+- Mobile coding via Happy app (Claude Code on iOS/Android)
 
-**Gmail/Calendar integration:** OAuth setup for email and calendar automation
-
-**Receipt processing:** Forward receipts → auto-saved to Google Drive
-
-**Workflow automation:** Install n8n for complex automation pipelines
-
-**Mobile coding:** Install Happy app for Claude Code on iOS/Android
-
-The beauty of this setup is modularity. Start with the core (Openclaw + Telegram) and add features as you need them.
+The setup is modular. Start with Openclaw + Telegram and add other components as needed.
 
 ## Troubleshooting
 
@@ -359,17 +338,13 @@ The beauty of this setup is modularity. Start with the core (Openclaw + Telegram
 - Use Oracle Cloud Console > Instance > Console Connection
 - Or reboot instance from console
 
-## Key Takeaways
+## Summary
 
-**Don't buy a Mac mini just to run AI agents.** Oracle's free tier gives you better specs for $0.
+Oracle's free tier provides 4 ARM cores and 24GB RAM at no cost. Openclaw offers persistent AI conversations with file system access, accessible via messaging platforms like Telegram.
 
-**Openclaw > ChatGPT/Claude** when you need persistence, context, and system access.
+Setup takes approximately 3 hours. The core components (Oracle instance + Openclaw + Telegram) provide the base functionality. Additional features can be added later.
 
-**The setup takes ~3 hours** but you get an always-on AI environment that costs nothing to run.
-
-**Start simple.** Core setup (Oracle + Openclaw + Telegram) gets you 80% of the value. Add complexity only when you need it.
-
-**This is infrastructure you own.** No vendor lock-in, no usage caps, complete control.
+Total monthly cost: $20 for Claude Pro subscription. Infrastructure remains free.
 
 ---
 
