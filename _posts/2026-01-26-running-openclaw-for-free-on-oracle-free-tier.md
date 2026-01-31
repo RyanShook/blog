@@ -57,8 +57,6 @@ In the Oracle Cloud Console:
 
 Wait 3-5 minutes for the instance to provision. Note the public IP address.
 
-**Capacity issues?** If you get "out of capacity," try a different availability domain or wait 24 hours and retry.
-
 ### Step 3: Initial Server Access
 
 From your terminal:
@@ -299,11 +297,6 @@ Additional features you can add:
 The setup is modular. Start with Openclaw + Telegram and add other components as needed.
 
 ## Troubleshooting
-
-**"Out of capacity" error on Oracle?** 
-- Try different availability domains
-- Check again in 24 hours (capacity fluctuates)
-- Free tier instances are competitive—be patient
 
 **Openclaw gateway won't start?**
 - Check logs: `openclaw logs --follow`
