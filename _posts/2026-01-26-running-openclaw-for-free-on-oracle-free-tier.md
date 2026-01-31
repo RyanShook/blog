@@ -10,149 +10,371 @@ tags:
   - claude
   - ai-development
   - free-tier
-  - mobile-dev
+  - openclaw
 author: Ryan Shook
 image:
   path: /assets/img/ai-dev-stack.jpg
   alt: AI Development Stack - Free infrastructure with AI tools and automation
 ---
 
-I've been experimenting with AI-assisted development and hit a wall: my laptop wasn't enough. Not because of CPU or RAM—but because the moment I closed the lid, I lost my context. Switch devices? Start over. Need to debug something on my phone during lunch? Forget it.
+I was about to buy a $1,499 Mac mini M2 Pro just to have an always-on server for running AI agents. Then I realized: why spend $1,500 when I can get the same thing for free?
 
-So I built something different: a persistent AI development environment that costs $0/month for infrastructure, accessible from any device, with conversations that never disappear.
+**The problem with ChatGPT and Claude:** They forget. Close the browser, lose context. Switch devices, start over. They're amazing tools, but they live in isolated sessions with no memory, no persistence, and no access to your actual environment.
 
-**The cost comparison that matters:** A Mac mini M2 Pro costs $1,499 upfront plus $25/month for electricity. Oracle's Always Free tier gives you similar performance—4 ARM cores, 24GB RAM—for $0/month, forever. The only recurring cost? A $20 Claude Pro subscription I was already paying for.
+**Openclaw changes everything.** It's not just a chatbot—it's a full AI assistant with persistent context, file system access, browser control, and workflow automation. Most importantly, it runs on *your* infrastructure, accessible from any device, and remembers everything.
 
-Here's the story of how I built it, what actually works, and why it's changed how I code.
+And thanks to Oracle's Always Free tier, that infrastructure costs $0/month.
 
-## TL;DR
+## Why Openclaw > ChatGPT/Claude
 
-**What I Built:** An always-on AI development server on Oracle's free tier, accessible from my phone via Happy app, with persistent Claude Code sessions that survive across devices.
+**Persistence:** Conversations survive server reboots, device switches, and weeks of inactivity. Ask a question today, pick up the conversation next week.
 
-**The Secret Sauce:** Free ARM server (4 cores, 24GB RAM) + $20/month Claude Pro + free mobile tools (Termius, Happy iOS) = persistent AI development from anywhere.
+**Context:** Full access to your files, git repos, and running services. It's not hallucinating about your codebase—it's reading it.
 
-**Monthly Cost:** $0 for infrastructure vs $138/month AWS.
+**Always-on:** The server never sleeps. Set up heartbeat monitoring and it proactively checks your email, calendar, or deployment status.
 
-**The Win:** Code from anywhere with full context. Start a conversation on my laptop, continue it on my phone days later. Claude remembers everything.
+**Multi-channel:** Chat via Telegram, WhatsApp, iMessage, Slack, Discord—wherever you already are. No app switching.
 
-**Time Investment:** 8 hours initial setup, 1 hour/month maintenance.
+**Control:** Self-hosted, open source, runs on infrastructure you own. No vendor lock-in, no usage limits beyond your Claude API subscription.
 
-**Who Should Try:** Developers who want AI-assisted development 24/7, don't mind tinkering, and value never losing context. Not for production workloads.
+This isn't "ChatGPT but self-hosted." It's an entirely different paradigm—a persistent AI agent with shell access, living on a server you control.
 
-## The Problem: Laptop Development Doesn't Work for AI
+## The Setup: Step-by-Step
 
-AI coding assistants are incredible. Claude Code, GitHub Copilot, cursor—they're genuinely transformative. But they all share the same fatal flaw: they forget.
+Here's exactly how I built it. Total time: ~3 hours. Monthly cost: $0 for infrastructure + $20 Claude Pro subscription.
 
-Close your laptop? Context gone. Switch from desktop to phone? Start over. Need to review yesterday's architectural discussion? Lost to the ether.
+### Step 1: Sign Up for Oracle Free Tier
 
-This isn't a bug. It's how terminal and IDE-based tools work. Your conversation lives in RAM, tied to a single device, in a single session. The moment that session ends, so does the AI's memory of your project.
+1. Go to [oracle.com/cloud/free](https://www.oracle.com/cloud/free/)
+2. Click "Start for free"
+3. Create account (requires credit card for verification, but it's never charged)
+4. Complete verification
 
-For casual coding, that's fine. But for real work—refactoring a complex codebase, debugging across days, maintaining architectural consistency—it's crippling. I found myself reexplaining context to Claude every morning. "Remember how we decided to use SQLite instead of PostgreSQL?" No, it doesn't remember. Because that conversation died when I closed my laptop.
+**Important:** Oracle's free tier is "Always Free" - no trial period, no expiration. Once created, these resources are yours forever.
 
-I tried syncing conversation histories manually. I tried keeping detailed notes. I tried leaving my laptop open 24/7. None of it worked.
+### Step 2: Spin Up the Max Free Instance
 
-I also tried the hosted AI coding platforms—Poke, Manus, Zo Computer. They solve some of these problems: cloud-based environments, persistent sessions, browser access. But the tradeoffs weren't worth it for me. The cost adds up ($30-50/month on top of AI subscription), I lose control over my environment, and I'm locked into their tooling and workflows. The hosted solutions felt like renting someone else's setup instead of owning mine.
+In the Oracle Cloud Console:
 
-What I needed wasn't a better laptop or a hosted IDE. I needed an environment that *never went away*, that I controlled completely, and that cost basically nothing. A server that's always running, with AI sessions that persist indefinitely, accessible from any device.
+1. **Compute > Instances > Create Instance**
+2. **Name:** openclaw-server (or whatever you want)
+3. **Image:** Ubuntu 24.04 (Canonical-Ubuntu-24.04-aarch64)
+4. **Shape:** 
+   - Click "Change Shape"
+   - Select "Ampere" (ARM)
+   - Choose VM.Standard.A1.Flex
+   - Set **4 OCPUs** and **24GB RAM** (maxes out free tier)
+5. **Networking:** Use default VCN (creates automatically)
+6. **SSH Keys:** 
+   - Generate a key pair (Download private key!)
+   - Or paste your existing public key
+7. **Boot Volume:** 200GB (max free tier)
+8. Click **Create**
 
-Claude Code on my laptop was already working great. I just needed it to run somewhere that never shut down.
+Wait 3-5 minutes for the instance to provision. Note the public IP address.
 
-## Oracle's Actually Free ARM Instances
+**Capacity issues?** Oracle's free ARM instances are popular. If you get "out of capacity," try a different availability domain or wait 24 hours and retry. It's worth the wait.
 
-Oracle's "Always Free" tier is the only truly free cloud option that lets you run a real server. AWS and GCP offer free credits or limited trials, but Oracle gives you actual infrastructure with no expiration:
+### Step 3: Initial Server Access
 
-- **4 ARM Ampere cores** (can split across up to 4 instances)
-- **24GB RAM total** (I maxed it in one beefy instance)
-- **200GB storage** (boot volumes + block volumes)
-- **10TB bandwidth/month** (way more than I'll ever use)
-- **Truly always free** - Not a trial. Not "free credits." Just free.
+From your terminal:
 
-Three weeks in, my Oracle bill is still $0.00. The free tier doesn't expire. It just... works.
+```bash
+# SSH into your new server
+ssh -i /path/to/your/private-key.pem ubuntu@YOUR_PUBLIC_IP
 
-ARM Ampere processors are fast, power-efficient, and surprisingly compatible with modern software. Docker images work. Node.js flies. Ubuntu runs native.
+# Update packages
+sudo apt update && sudo apt upgrade -y
 
-For $0/month, I can run a server with more RAM than my laptop, accessible 24/7 from anywhere.
+# Install essentials
+sudo apt install -y git curl wget build-essential
+```
 
-## The Stack: Free Tools, Persistent Context
+### Step 4: Install Tailscale (Secure Remote Access)
 
-Here's what I'm running:
+Tailscale creates a private VPN so you can SSH from anywhere without exposing ports:
 
-**Core Infrastructure:**
-- **Oracle Cloud** (4 ARM cores, 24GB RAM) - The always-on foundation, $0/month
-- **Ubuntu 24.04** - ARM64 native, rock solid
-- **Tailscale** - Zero-config VPN so I can SSH from anywhere securely
+```bash
+# Install Tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
 
-**AI Development Tools:**
-- **Claude Code** ($20/month Claude Pro subscription) - Official CLI with full coding capabilities
-- **Happy** (free iOS/Android app) - Mobile Claude Code interface
-- **Openclaw** (free, self-hosted) - Multi-channel AI assistant (Telegram, WhatsApp, iMessage, Slack, Discord) with persistent sessions, file access, browser control, and workflow automation
+# Start and authenticate
+sudo tailscale up
 
-**Persistence & Automation:**
-- **n8n** (free, self-hosted) - Workflow automation that can trigger from Claude via MCP
-- **Git + rclone** - Nightly backups to GitHub and Google Drive (also free)
-- **Termius** (free tier) - SSH client for iOS, how I access the server from my phone
+# Visit the auth URL it prints, log in, approve device
+```
 
-**Total monthly cost:** $20 (just the Claude Pro subscription I was already paying for)
+Now you can SSH via Tailscale IP (100.x.x.x) instead of the public IP. Much more secure.
 
-The insight: You don't need expensive infrastructure. You need *persistent* infrastructure. A $0/month server that never stops is worth infinitely more than a $200/month laptop that goes to sleep.
+### Step 5: Install Node.js (for Openclaw)
 
-## Building It: A Weekend Project
+```bash
+# Install fnm (Fast Node Manager)
+curl -fsSL https://fnm.vercel.app/install | bash
+source ~/.bashrc
 
-Setup was straightforward once I had the Oracle instance:
+# Install latest Node LTS
+fnm install --lts
+fnm use lts-latest
+fnm default lts-latest
 
-1. **Tailscale** for secure access (`curl install.sh | sh; sudo tailscale up`)
-2. **Claude Code** via npm (`npm install -g @anthropic-ai/claude-code`)
-3. **Happy** - Install the iOS app, SSH into server, run `happy`, scan QR code
-4. **Openclaw** - The game-changer for persistent AI access:
-   ```bash
-   npm install -g openclaw@latest
-   openclaw onboard  # Interactive setup wizard
-   ```
-   The onboard wizard handles everything: model auth, channel connections (I went with Telegram), workspace setup, and skill installation. Within 10 minutes, I had an AI assistant accessible from my phone via Telegram, with full file system access and browser control.
+# Verify
+node --version  # Should show v22.x.x or higher
+```
 
-Key Openclaw features I configured:
-- **Gmail/Calendar integration** - OAuth setup lets it check emails and manage my calendar
-- **Heartbeat monitoring** - Checks inbox and calendar every 30 minutes, alerts me proactively
-- **Receipt processing** - Forward receipts with "receipt" in subject → automatically saved to Google Drive organized by date
-- **Security hardening** - File permissions locked down, fail2ban protecting SSH
+### Step 6: Install Claude CLI
 
-I added n8n for workflow automation and configured automatic backups. The entire setup took maybe 8 hours, mostly waiting for installs.
+```bash
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
 
-The magic isn't in the complexity. It's in the simplicity. Once running, the system just *works*. Claude sessions persist. Tmux keeps everything alive. Backups run automatically at 3 AM. Security updates install themselves.
+# Authenticate (opens browser for OAuth)
+claude auth login
 
-**About those conversation backups:** Every night at 3 AM, a cron job exports my Claude Code conversations to GitHub. This solves a critical problem: tmux sessions live in RAM, so if the server reboots (automatic security updates), active conversations disappear. But the nightly exports mean I can always review yesterday's architectural discussions or restore context after a reboot. It's like having perfect memory of every decision and conversation.
+# Test it
+claude chat "Hello from my new server!"
+```
 
-I haven't manually intervened in two weeks.
+### Step 7: Security Hardening
 
-## How I Actually Use It
+**Set up fail2ban (blocks brute-force SSH attacks):**
 
-The setup enables a few workflows that weren't possible before:
+```bash
+sudo apt install -y fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+```
 
-**Mobile coding actually works.** I've reviewed PRs and pushed bug fixes from my iPhone using the Happy app. The key is Claude remembers context across devices—I can start a conversation on my laptop, continue on my phone, and pick it back up later without re-explaining anything.
+**Configure automatic security updates:**
 
-**Context never dies.** SSH into the server, attach to the tmux session, and Claude remembers the conversation from three days ago. No "where was I?" moment. The conversation backups mean even if the server reboots, I can review past discussions and restore context.
+```bash
+sudo apt install -y unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
+# Select "Yes" to enable automatic updates
+```
 
-**Openclaw from anywhere.** Via Telegram, I can ask technical questions, check server status, process receipts, or trigger workflows—all from my phone. It has access to the file system, can run shell commands, and remembers context across conversations.
+**Lock down file permissions:**
 
-**Automated monitoring.** Openclaw's heartbeat system checks my email and calendar every 30 minutes, alerts me to important messages, and can even pull down latest code changes or analyze projects on command.
+```bash
+# Your home directory should be private
+chmod 700 ~
 
-The real advantage isn't the individual tools—it's that the environment is always there, always warm, and costs $20/month.
+# SSH keys should be locked down
+chmod 600 ~/.ssh/authorized_keys
+```
 
-## Getting Started
+### Step 8: Set Up Backups and Self-Healing
 
-If you want to try this setup:
+**Install rclone for Google Drive backups:**
 
-**Week 1:** Spin up the Oracle instance (be patient with capacity), install Openclaw (`npm install -g openclaw@latest`), run `openclaw onboard` and connect your messaging app (Telegram is easiest).
+```bash
+# Install rclone
+sudo apt install -y rclone
 
-**Week 2:** Add Claude Code and Happy for mobile coding. Configure Openclaw heartbeats for automated monitoring.
+# Configure Google Drive
+rclone config
+# Follow prompts: "n" for new remote, name it "gdrive", choose "drive" type
 
-**Later:** Set up Gmail/Calendar integration, receipt processing, or workflow automation as needed.
+# Create backup script
+cat > ~/backup-to-gdrive.sh << 'EOF'
+#!/bin/bash
+rclone sync ~/openclaw-workspace gdrive:openclaw-backups \
+  --exclude node_modules/** \
+  --exclude .git/objects/** \
+  --log-file ~/backup.log
+EOF
 
-The stack is modular. Openclaw alone is valuable for always-on AI access. Add other components as your workflow demands.
+chmod +x ~/backup-to-gdrive.sh
+```
 
-**Key resources:**
+**Set up automated backup cron job:**
+
+```bash
+# Edit crontab
+crontab -e
+
+# Add this line (runs backup daily at 3 AM):
+0 3 * * * /home/ubuntu/backup-to-gdrive.sh
+```
+
+**Self-healing: Auto-restart Openclaw on failure:**
+
+```bash
+# Create watchdog script
+cat > ~/openclaw-watchdog.sh << 'EOF'
+#!/bin/bash
+if ! pgrep -f "openclaw.*gateway" > /dev/null; then
+    cd ~ && openclaw gateway --daemon
+    echo "$(date): Openclaw gateway restarted" >> ~/watchdog.log
+fi
+EOF
+
+chmod +x ~/openclaw-watchdog.sh
+
+# Add to crontab (checks every 5 minutes)
+crontab -e
+# Add line:
+*/5 * * * * /home/ubuntu/openclaw-watchdog.sh
+```
+
+### Step 9: Install Openclaw
+
+```bash
+# Install globally
+npm install -g openclaw@latest
+
+# Run onboarding wizard
+openclaw onboard
+
+# Follow prompts:
+# - Model: Select Claude (use your Claude Pro auth)
+# - Workspace: Accept default (~/ or create ~/openclaw-workspace)
+# - Channels: Select Telegram (easiest to set up)
+# - Skills: Install recommended (or skip for now)
+```
+
+The wizard will walk you through everything. Most important: the Telegram setup.
+
+### Step 10: Configure Telegram
+
+**Create a Telegram bot:**
+
+1. Open Telegram, search for [@BotFather](https://t.me/botfather)
+2. Send `/newbot`
+3. Choose a name (e.g., "My Openclaw Bot")
+4. Choose a username (e.g., `my_openclaw_bot`)
+5. Copy the API token BotFather gives you
+
+**Add token to Openclaw:**
+
+During `openclaw onboard`, when asked for Telegram token, paste it.
+
+Or manually add to `~/.openclaw/openclaw.json`:
+
+```json
+{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "YOUR_TOKEN_HERE"
+    }
+  }
+}
+```
+
+**Start the gateway:**
+
+```bash
+openclaw gateway --daemon
+```
+
+**Test it:**
+
+1. Find your bot in Telegram (search for the username you created)
+2. Send `/start`
+3. Send a message like "What's the server uptime?"
+
+If it responds, you're done!
+
+### Step 11: Enable Heartbeat Monitoring (Optional but Awesome)
+
+Edit `~/openclaw-workspace/HEARTBEAT.md`:
+
+```markdown
+# Check system status
+- Run: `uptime` and `df -h` to check server health
+- If disk usage > 80%, alert me
+
+# Check for important emails (if Gmail configured)
+- Run email check script
+- Alert if unread from specific senders
+
+# Return HEARTBEAT_OK if nothing needs attention
+```
+
+Configure heartbeat interval in `~/.openclaw/openclaw.json`:
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "30m"
+      }
+    }
+  }
+}
+```
+
+Now Openclaw checks in every 30 minutes and can proactively alert you.
+
+## What You Get
+
+**Total cost:** $0/month for infrastructure + $20/month Claude Pro
+
+**What you have:**
+- Always-on AI assistant accessible from any device
+- Persistent context that survives reboots and device switches
+- Full file system and command access
+- Automated backups and self-healing
+- Multi-channel access (Telegram, plus add more later)
+- 4 ARM cores and 24GB RAM to run whatever else you need
+
+**Compared to buying a $1,500 Mac mini to run AI agents:** You just saved $1,500 and got more RAM.
+
+## Next Steps
+
+Once the basics are running:
+
+**Add more channels:** WhatsApp, Slack, Discord, iMessage (requires setup)
+
+**Gmail/Calendar integration:** OAuth setup for email and calendar automation
+
+**Receipt processing:** Forward receipts → auto-saved to Google Drive
+
+**Workflow automation:** Install n8n for complex automation pipelines
+
+**Mobile coding:** Install Happy app for Claude Code on iOS/Android
+
+The beauty of this setup is modularity. Start with the core (Openclaw + Telegram) and add features as you need them.
+
+## Troubleshooting
+
+**"Out of capacity" error on Oracle?** 
+- Try different availability domains
+- Check again in 24 hours (capacity fluctuates)
+- Free tier instances are competitive—be patient
+
+**Openclaw gateway won't start?**
+- Check logs: `openclaw logs --follow`
+- Verify Node version: `node --version` (need 22+)
+- Check port conflicts: `sudo ss -tulpn | grep 18789`
+
+**Telegram bot not responding?**
+- Verify gateway is running: `ps aux | grep openclaw`
+- Check token in `~/.openclaw/openclaw.json`
+- Test token: `curl https://api.telegram.org/bot<TOKEN>/getMe`
+
+**Lost SSH access?**
+- Use Oracle Cloud Console > Instance > Console Connection
+- Or reboot instance from console
+
+## Key Takeaways
+
+**Don't buy a Mac mini just to run AI agents.** Oracle's free tier gives you better specs for $0.
+
+**Openclaw > ChatGPT/Claude** when you need persistence, context, and system access.
+
+**The setup takes ~3 hours** but you get an always-on AI environment that costs nothing to run.
+
+**Start simple.** Core setup (Oracle + Openclaw + Telegram) gets you 80% of the value. Add complexity only when you need it.
+
+**This is infrastructure you own.** No vendor lock-in, no usage caps, complete control.
+
+---
+
+**Resources:**
 - [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)
-- [Openclaw](https://openclaw.ai) (formerly Clawdbot)
-- [Claude Code](https://claude.ai/code)
-- [Happy Engineering](https://happy.engineering)
-- [Tailscale](https://tailscale.com)
+- [Openclaw Documentation](https://openclaw.ai)
+- [Telegram BotFather](https://t.me/botfather)
+- [Tailscale Setup](https://tailscale.com)
