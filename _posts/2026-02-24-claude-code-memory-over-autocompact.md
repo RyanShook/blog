@@ -13,8 +13,8 @@ tags:
   - ai-tools
 author: Ryan Shook
 image:
-  path: /assets/img/posts/claude-plan-memory-workflow.png
-  alt: AutoCompact vs PLAN.md workflow comparison for Claude Code context continuity
+  path: /assets/img/posts/context.jpg
+  alt: Hand-drawn carton labeled CONTEXT tipped over on a counter
 ---
 
 Claude Code is easily one of the best tools in my workflow right now.
