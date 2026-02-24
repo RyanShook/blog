@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="768" viewBox="0 0 1152 768" role="img" aria-labelledby="title desc">
+  <title id="title">Sketch style workflow graphic for Claude Code planning</title>
+  <desc id="desc">Hand drawn style scene with Memory jar, PLAN.md notebook, and crossed out AutoCompact note.</desc>
+  <defs>
+    <pattern id="paperNoise" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="7" cy="9" r="0.7" fill="#e8e4da"/>
+      <circle cx="21" cy="13" r="0.9" fill="#ede9de"/>
+      <circle cx="29" cy="27" r="0.8" fill="#e6e1d5"/>
+      <circle cx="11" cy="31" r="0.6" fill="#ece7dc"/>
+    </pattern>
+  </defs>
+
+  <rect width="1152" height="768" fill="#f3efe3"/>
+  <rect width="1152" height="768" fill="url(#paperNoise)" opacity="0.7"/>
+
+  <!-- Table -->
+  <rect x="0" y="520" width="1152" height="248" fill="#d2b48a"/>
+  <line x1="0" y1="520" x2="1152" y2="520" stroke="#2d2d2d" stroke-width="5"/>
+  <g stroke="#9e7b55" stroke-width="2" opacity="0.45">
+    <line x1="0" y1="578" x2="1152" y2="578"/>
+    <line x1="0" y1="635" x2="1152" y2="635"/>
+    <line x1="0" y1="692" x2="1152" y2="692"/>
+  </g>
+
+  <!-- Left jar: MEMORY -->
+  <ellipse cx="222" cy="234" rx="96" ry="24" fill="#e6e0d3" stroke="#2d2d2d" stroke-width="6"/>
+  <rect x="126" y="234" width="192" height="270" rx="36" fill="#ebe6db" stroke="#2d2d2d" stroke-width="6"/>
+  <ellipse cx="222" cy="504" rx="96" ry="24" fill="#d9d1c2" stroke="#2d2d2d" stroke-width="6"/>
+  <rect x="142" y="292" width="160" height="112" rx="8" fill="#f7f3ea" stroke="#2d2d2d" stroke-width="4"/>
+  <text x="222" y="355" fill="#2f2f2f" font-family="Arial, sans-serif" font-size="56" font-weight="700" text-anchor="middle">MEMORY</text>
+  <g stroke="#2d2d2d" stroke-width="2" opacity="0.35">
+    <line x1="155" y1="430" x2="286" y2="470"/>
+    <line x1="160" y1="448" x2="294" y2="486"/>
+    <line x1="170" y1="414" x2="292" y2="454"/>
+  </g>
+
+  <!-- Center notebook: PLAN.MD -->
+  <rect x="398" y="160" width="356" height="360" rx="14" fill="#efe9dc" stroke="#2d2d2d" stroke-width="6"/>
+  <line x1="440" y1="160" x2="440" y2="520" stroke="#2d2d2d" stroke-width="4"/>
+  <text x="576" y="238" fill="#2f2f2f" font-family="Arial, sans-serif" font-size="72" font-weight="700" text-anchor="middle">PLAN.MD</text>
+  <g fill="#2f2f2f" font-family="Arial, sans-serif" font-size="32">
+    <text x="470" y="302">[x] plan</text>
+    <text x="470" y="352">[x] stages</text>
+    <text x="470" y="402">[x] checklist</text>
+    <text x="470" y="452">[ ] next actions</text>
+  </g>
+  <g stroke="#2d2d2d" stroke-width="2" opacity="0.35">
+    <line x1="460" y1="270" x2="730" y2="270"/>
+    <line x1="460" y1="320" x2="730" y2="320"/>
+    <line x1="460" y1="370" x2="730" y2="370"/>
+    <line x1="460" y1="420" x2="730" y2="420"/>
+    <line x1="460" y1="470" x2="730" y2="470"/>
+  </g>
+
+  <!-- Right note: AUTOCOMPACT crossed out -->
+  <polygon points="820,208 996,176 1066,318 884,352" fill="#efe8d8" stroke="#2d2d2d" stroke-width="5"/>
+  <text x="945" y="262" fill="#2f2f2f" font-family="Arial, sans-serif" font-size="38" font-weight="700" text-anchor="middle">AUTO</text>
+  <text x="945" y="306" fill="#2f2f2f" font-family="Arial, sans-serif" font-size="38" font-weight="700" text-anchor="middle">COMPACT</text>
+  <line x1="850" y1="220" x2="1035" y2="338" stroke="#c94136" stroke-width="10" stroke-linecap="round"/>
+  <line x1="1038" y1="214" x2="845" y2="342" stroke="#c94136" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Pencil -->
+  <polygon points="806,530 1038,558 1032,602 800,574" fill="#d6b183" stroke="#2d2d2d" stroke-width="4"/>
+  <polygon points="1038,558 1082,577 1032,602" fill="#5f5f5f" stroke="#2d2d2d" stroke-width="4"/>
+  <polygon points="1082,577 1104,587 1073,595" fill="#f6e4c8" stroke="#2d2d2d" stroke-width="4"/>
+  <line x1="1095" y1="590" x2="1109" y2="594" stroke="#2d2d2d" stroke-width="4"/>
+
+  <!-- Caption -->
+  <text x="576" y="725" fill="#2f2f2f" font-family="Arial, sans-serif" font-size="38" font-weight="700" text-anchor="middle">
+    One living PLAN.md beats compressed history
+  </text>
+</svg>
