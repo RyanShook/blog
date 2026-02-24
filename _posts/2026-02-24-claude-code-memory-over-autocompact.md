@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Is Amazing, But AutoCompact Makes It Worse for Real Projects"
-date: 2026-02-24 21:00:00 -06:00
+date: 2026-02-24 15:00:00 -06:00
 categories:
   - technology
   - ai
