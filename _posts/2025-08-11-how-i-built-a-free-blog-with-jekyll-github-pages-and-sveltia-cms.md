@@ -11,6 +11,9 @@ tags:
   - cloudflare
   - tutorial
 author: Ryan Shook
+image:
+  path: /assets/img/posts/blog.png
+  alt: Blog ingredients illustration with GitHub, Jekyll, and Cloudflare
 ---
 ![Blog Ingredients](/assets/img/posts/blog.png)
 
