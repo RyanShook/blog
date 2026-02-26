@@ -1,6 +1,7 @@
 ---
 title: The Gradual Drift
 date: 2026-02-07 17:30:00 -0600
+published: false
 categories:
   - technology
   - ai
