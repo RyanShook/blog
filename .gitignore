@@ -8,4 +8,6 @@ vendor/
 .DS_Store
 .firecrawl/
 .playwright-mcp/
+.tmp-screenshots/
 firebase-debug.log
+Gemfile.lock
