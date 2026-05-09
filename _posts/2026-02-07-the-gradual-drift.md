@@ -1,4 +1,5 @@
 ---
+published: false
 title: The Gradual Drift
 date: 2026-02-07 17:30:00 -0600
 categories:
