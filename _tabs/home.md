@@ -1,7 +1,7 @@
 ---
-icon: fas fa-arrow-left
+icon: fas fa-user
 order: 0
-title: Main site
-permalink: /main-site/
+title: About Ryan
+permalink: /about-ryan/
 redirect_to: https://ryanshook.org/
 ---
