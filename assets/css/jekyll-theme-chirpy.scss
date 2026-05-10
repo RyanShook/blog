@@ -183,14 +183,16 @@ img.preview-img {
   font-family: var(--rs-font-sans) !important;
 }
 
-/* avatar: rounded square, not a circle */
+/* avatar: square with subtle rounded corners (overrides Bootstrap
+   .rounded-circle that the theme bakes into sidebar.html) */
 #sidebar #avatar,
 #sidebar #avatar.rounded-circle {
-  border-radius: 16px !important;
+  border-radius: 8px !important;
   overflow: hidden;
+  box-shadow: none !important;
 }
 #sidebar #avatar img {
-  border-radius: 16px !important;
+  border-radius: 8px !important;
   object-fit: cover;
 }
 #sidebar .nav-link {
