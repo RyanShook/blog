@@ -144,25 +144,26 @@ script_includes:
 </article>
 
 {% if enable_toc %}
+  {%- comment -%}
+    Block comments only inside this script — the layout: compress
+    pipeline collapses newlines, which would turn // line comments
+    into a single comment that swallows the rest of the script.
+  {%- endcomment -%}
   <script>
     (function () {
-      // Mirror tocbot's populated <nav id="toc"> output into the mobile
-      // <details>. Uses cloneNode + appendChild rather than innerHTML so
-      // we never inject markup; only same-origin DOM nodes already on
-      // the page (tocbot built them from this post's own headings).
-      const sync = () => {
-        const src = document.getElementById('toc');
-        const dst = document.getElementById('rs-toc-mobile-nav');
-        if (!src || !dst || !src.children.length) return false;
-        while (dst.firstChild) dst.removeChild(dst.firstChild);
-        for (const child of src.children) {
-          dst.appendChild(child.cloneNode(true));
+      var sync = function () {
+        var src = document.getElementById('toc');
+        var dst = document.getElementById('rs-toc-mobile-nav');
+        if (!src || !dst || !src.children.length) { return false; }
+        while (dst.firstChild) { dst.removeChild(dst.firstChild); }
+        for (var i = 0; i < src.children.length; i++) {
+          dst.appendChild(src.children[i].cloneNode(true));
         }
         return true;
       };
-      let attempts = 0;
-      const tick = () => {
-        if (sync() || ++attempts > 40) return;
+      var attempts = 0;
+      var tick = function () {
+        if (sync() || ++attempts > 40) { return; }
         setTimeout(tick, 100);
       };
       if (document.readyState === 'loading') {
