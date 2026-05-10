@@ -5,12 +5,24 @@
   class="d-flex w-100 justify-content-center"
   data-bs-theme="{{ site.theme_mode | default: 'auto' }}"
 >
-  <div class="d-flex flex-column align-items-center">
-    <div class="footer-content">
-      <p class="mb-1 text-muted">
-        <a href="https://ryanshook.org/" class="text-muted text-decoration-none me-2" style="border-bottom: 1px solid currentColor;">&larr; ryanshook.org</a>
-        &nbsp;&middot;&nbsp; &copy; {{ 'now' | date: '%Y' }} {{ site.social.name }}.
-      </p>
+  <div class="d-flex flex-column align-items-center footer-stack">
+    <div class="social-icons">
+      <a href="https://x.com/ryanshook" target="_blank" rel="noopener" aria-label="X" class="text-muted">
+        <i class="fab fa-x-twitter fa-lg"></i>
+      </a>
+      <a href="https://facebook.com/ryanshook" target="_blank" rel="noopener" aria-label="Facebook" class="text-muted">
+        <i class="fab fa-facebook fa-lg"></i>
+      </a>
+      <a href="https://linkedin.com/in/ryanshook" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-muted">
+        <i class="fab fa-linkedin fa-lg"></i>
+      </a>
+      <a href="https://instagram.com/ryanshook" target="_blank" rel="noopener" aria-label="Instagram" class="text-muted">
+        <i class="fab fa-instagram fa-lg"></i>
+      </a>
     </div>
+    <p class="mb-0 text-muted footer-line">
+      <a href="https://ryanshook.org/" class="text-muted text-decoration-none me-2" style="border-bottom: 1px solid currentColor;">&larr; ryanshook.org</a>
+      &nbsp;&middot;&nbsp; &copy; {{ 'now' | date: '%Y' }} {{ site.social.name }}.
+    </p>
   </div>
 </footer>

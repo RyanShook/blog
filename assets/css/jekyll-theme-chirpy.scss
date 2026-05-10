@@ -418,14 +418,24 @@ a.btn.btn-primary.rs-nav-cta {
   .rs-nav-links li:nth-child(-n+3) { display: none; }
 }
 
+/* footer: breathing room above + below the social row + credit line */
+#footer {
+  margin-top: 64px;
+  padding-bottom: 48px;
+}
+.footer-stack {
+  gap: 12px;
+}
+.footer-line {
+  font-size: 13px;
+}
+
 /* social icons */
 .social-icons {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
+  gap: 1.25rem;
 }
 .social-icons a {
   transition: color 0.3s ease, transform 0.2s ease;
