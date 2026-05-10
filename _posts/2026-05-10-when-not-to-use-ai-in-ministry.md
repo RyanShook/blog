@@ -1,4 +1,5 @@
 ---
+published: false
 title: "When not to use AI in ministry"
 date: 2026-05-10 10:45:00 -0500
 categories:
