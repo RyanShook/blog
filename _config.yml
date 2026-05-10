@@ -20,10 +20,15 @@ timezone: America/Chicago
 
 title: Ryan Shook
 
-tagline: Passionate about technology and storytelling
+tagline: Notes on AI for churches and nonprofits
 
 description: >- # used by seo meta and the atom feed
-  Blog of Ryan Shook - sharing thoughts on technology, storytelling, and ministry.
+  Notes from the work — Ryan Shook on responsibly adopting AI in churches
+  and nonprofits, donor development, analytics, and digital ministry.
+
+# Default social-share image for non-post pages (listing, tag pages, etc.)
+# Posts override this via their own front-matter `image:`.
+social_preview_image: /assets/img/headshot.jpg
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -42,7 +47,7 @@ social:
   email: # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/ryanshook
+    - https://x.com/ryanshook
     - https://github.com/RyanShook
     - https://www.linkedin.com/in/ryanshook
 

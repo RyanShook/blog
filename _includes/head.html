@@ -56,10 +56,11 @@
   {{ seo_tags }}
 
   <title>
-    {%- unless page.layout == 'home' -%}
-      {{ page.title | append: ' | ' }}
-    {%- endunless -%}
-    {{ site.title }}
+    {%- if page.layout == 'home' -%}
+      {{ site.title }}{% if site.tagline %} · {{ site.tagline }}{% endif %}
+    {%- else -%}
+      {{ page.title | append: ' | ' }}{{ site.title }}
+    {%- endif -%}
   </title>
 
   {% include_cached favicons.html %}
