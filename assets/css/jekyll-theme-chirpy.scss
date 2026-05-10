@@ -365,6 +365,14 @@ blockquote.prompt-danger {
   background: var(--rs-surface);
 }
 .rs-nav-links a.rs-nav-active { color: var(--rs-accent); }
+.rs-nav-links a.accent {
+  color: var(--rs-accent) !important;
+  font-weight: 700;
+}
+.rs-nav-links a.accent:hover {
+  color: var(--rs-accent) !important;
+  background: rgba(252, 95, 43, 0.08) !important;
+}
 .rs-nav-cta.btn.btn-primary,
 a.btn.btn-primary.rs-nav-cta {
   margin-left: 8px;
