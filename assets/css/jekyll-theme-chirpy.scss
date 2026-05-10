@@ -429,24 +429,29 @@ a.btn.btn-primary.rs-nav-cta {
 }
 
 /* footer: breathing room above + below the social row + credit line */
-#footer {
+#footer,
+footer#footer {
   margin-top: 64px;
   padding-bottom: 48px;
+  border-top: 0 !important;
 }
 .footer-stack {
-  gap: 12px;
+  gap: 16px;
 }
 .footer-line {
   font-size: 13px;
 }
 
-/* social icons */
+/* social icons (bigger; no divider above) */
 .social-icons {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
+  font-size: 22px;
 }
+.social-icons a { line-height: 1; }
+.social-icons .fa-lg { font-size: inherit !important; }
 .social-icons a {
   transition: color 0.3s ease, transform 0.2s ease;
   display: inline-block;
