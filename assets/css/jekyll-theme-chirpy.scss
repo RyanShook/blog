@@ -293,18 +293,23 @@ blockquote.prompt-danger {
 }
 
 /* ─── landing-page top nav (mirrors ryanshook.org/index.html) ──
- * Sits inside Chirpy's #topbar-wrapper slot; left sidebar stays as-is.
+ * Full-width fixed bar across the top. Sidebar pushed down to start
+ * below the bar so the two stack instead of overlapping.
  */
 #topbar-wrapper.rs-nav,
 .rs-nav {
-  position: sticky;
+  position: fixed !important;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
   height: 64px !important;
   background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: saturate(180%) blur(8px);
   -webkit-backdrop-filter: saturate(180%) blur(8px);
   border-bottom: 1px solid var(--rs-border);
+  padding: 0 24px;
 }
 .rs-nav-inner {
   display: flex;
@@ -312,7 +317,20 @@ blockquote.prompt-danger {
   justify-content: space-between;
   height: 64px;
   width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
 }
+
+/* Push the rest of the page down so it doesn't sit under the fixed bar. */
+#sidebar {
+  top: 64px !important;
+  height: calc(100vh - 64px) !important;
+}
+#main-wrapper {
+  padding-top: 64px;
+}
+/* Also nudge the back-to-top button up so it doesn't collide with the nav. */
+#back-to-top { z-index: 999; }
 .rs-nav-mark {
   font-family: var(--rs-font-sans);
   font-weight: 700;

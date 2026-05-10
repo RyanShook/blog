@@ -6,8 +6,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="theme-color" content="#18181b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta
@@ -64,6 +63,7 @@
   </title>
 
   {% include_cached favicons.html %}
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicons/favicon.svg' | relative_url }}">
 
   <!-- Resource Hints -->
   {% unless site.assets.self_host.enabled %}
@@ -106,7 +106,12 @@
     <link rel="stylesheet" href="{{ site.data.origin[type].glightbox.css | relative_url }}">
   {% endif %}
 
-  <!-- JavaScript -->
+  <!-- Scripts (matches Chirpy 7.5+: theme.min.js + js-selector live in <head>).
+       On 7.0.x the theme.min.js src 404s but the page still works; on 7.5+
+       this is what makes home.min.js / post.min.js load and removes the
+       shimmer overlay once images finish loading. -->
+  <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
+  {% include js-selector.html lang=lang %}
 
   {% unless site.theme_mode %}
     {% include mode-toggle.html %}
