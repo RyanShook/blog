@@ -181,6 +181,17 @@ img.preview-img {
 #sidebar .site-subtitle {
   font-family: var(--rs-font-sans) !important;
 }
+
+/* avatar: rounded square, not a circle */
+#sidebar #avatar,
+#sidebar #avatar.rounded-circle {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+#sidebar #avatar img {
+  border-radius: 16px !important;
+  object-fit: cover;
+}
 #sidebar .nav-link {
   border-radius: 9999px;
   margin: 2px 12px;
