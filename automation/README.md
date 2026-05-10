@@ -21,7 +21,10 @@ weekday mornings, then emails Ryan a copy of the post and the live URL.
 7. Commits to `main` with message `post: <title>` and pushes. GitHub
    Pages rebuilds and the post is live in ~30 seconds.
 8. Emails `shoook@gmail.com` with the live URL, metadata, the full
-   post rendered as plain text, and any flags from the run.
+   post rendered as plain text, and any flags from the run. Email
+   is sent via AgentMail (`ryanshook@agentmail.to` → your Gmail).
+   The AgentMail API key is stored in the routine config in
+   claude.ai (not in this repo).
 
 The full prompt the routine fires lives in [agent-prompt.md](./agent-prompt.md).
 
@@ -36,9 +39,10 @@ The full prompt the routine fires lives in [agent-prompt.md](./agent-prompt.md).
 ## Prerequisites for the routine to actually run
 
 - [ ] Routine is created with `/schedule create` and the cron above.
-- [ ] The routine has access to a Gmail tool authenticated as the
-      sender (the `From:` address; doesn't matter which, as long as
-      it can send to `shoook@gmail.com`).
+- [ ] The routine has the AgentMail API key for
+      `ryanshook@agentmail.to` set as the env var
+      `AGENTMAIL_API_KEY` in its prompt context. Rotate from
+      https://agentmail.to if it ever leaks.
 - [ ] The routine has git push access to this repo. Default routine
       auth in Claude Code typically handles this, but it should be
       verified on the first manual fire.

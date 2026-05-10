@@ -141,39 +141,69 @@ If any answer is no, rewrite that section before shipping.
    over ~60 seconds if the first request 404s — the deploy takes
    a moment.
 
-## Email step
+## Email step (AgentMail via curl)
 
 After the commit pushes (and ideally after the deploy is verified
-live), send an email via the Gmail tool:
+live), send the summary email via AgentMail's REST API.
 
-- **To:** `shoook@gmail.com`
-- **Subject:** `New post published: <post title>`
-- **Body, in this exact order:**
-  1. The live URL on its own line.
-  2. A blank line.
-  3. Metadata block:
-     ```
-     Slug: <slug>
-     Word count: <N>
-     Commit SHA: <abbreviated SHA>
-     Topic category: <category from the scope list>
-     ```
-  4. A blank line, then `---`.
-  5. The full post content rendered as plain text from the
-     markdown. Keep headings as text on their own line. Preserve
-     list structure with `-` bullets. Strip frontmatter. No raw
-     markdown symbols cluttering the read (no `**`, no `[]()` link
-     syntax — render links as `text (URL)` instead).
-  6. A blank line, then `---`.
-  7. A one-line note on what Ryan should review or any flags from
-     the run. Examples:
-     - "First post in this topic category."
-     - "Tool reference (n8n self-host pricing) unverified — please
-       confirm before sharing."
-     - "Quality gate triggered a rewrite of the opening; flagging
-       in case the new hook needs a second look."
+- **Sender inbox:** `ryanshook@agentmail.to` (already provisioned).
+- **Recipient:** `shoook@gmail.com`.
+- **API key:** provided to your routine context as the env var
+  `AGENTMAIL_API_KEY`. Do NOT commit it; do NOT echo it back. Read
+  it from the env at send time and that's it.
+
+Send with `curl`:
+
+```bash
+curl -sS -X POST \
+  "https://api.agentmail.to/v0/inboxes/ryanshook@agentmail.to/messages/send" \
+  -H "Authorization: Bearer $AGENTMAIL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d @<payload-json-file>
+```
+
+Where the payload is JSON with:
+- `to`: `"shoook@gmail.com"`
+- `subject`: `"New post published: <post title>"`
+- `text`: the plain-text body, rendered as below
+- `html`: a simple HTML version (paragraphs, headings as `<h2>`/`<h3>`,
+  links as `<a href>`)
+
+Build the JSON file with `printf` or a here-doc, not by string-
+concatenating into the curl flag, so newlines in the body are
+preserved.
+
+**Body shape, in this exact order:**
+
+1. The live URL on its own line.
+2. A blank line.
+3. Metadata block:
+   ```
+   Slug: <slug>
+   Word count: <N>
+   Commit SHA: <abbreviated SHA>
+   Topic category: <category from the scope list>
+   ```
+4. A blank line, then `---`.
+5. The full post content rendered as plain text from the markdown.
+   Keep headings as text on their own line. Preserve list structure
+   with `-` bullets. Strip frontmatter. No raw markdown symbols
+   cluttering the read (no `**`, no `[]()` link syntax; render links
+   as `text (URL)` instead).
+6. A blank line, then `---`.
+7. A one-line review note. Examples:
+   - "First post in this topic category."
+   - "Tool reference (n8n self-host pricing) unverified — please
+     confirm before sharing."
+   - "Quality gate triggered a rewrite of the opening; flagging
+     in case the new hook needs a second look."
 
 Send the email even if the publish step had non-fatal warnings;
 include the warnings in the review note.
+
+If the curl returns non-2xx, save the response to a temp file, then
+retry once. If it still fails, leave the post committed (it's already
+live) and fail loudly in the run log so Ryan can catch it on the
+next run.
 
 Do not ask for confirmation. Run end to end.
