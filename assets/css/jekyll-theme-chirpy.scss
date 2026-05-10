@@ -8,7 +8,8 @@
 ';
 
 /* ─── design tokens (from design.md) ──────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+/* Inter Tight + JetBrains Mono are loaded via _data/origin/cors.yml so
+   they get a real <link> in <head> (faster than @import inside CSS). */
 
 :root {
   --rs-accent: #fc5f2b;
