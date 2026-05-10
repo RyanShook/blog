@@ -321,13 +321,15 @@ blockquote.prompt-danger {
   margin: 0 auto;
 }
 
-/* Push the rest of the page down so it doesn't sit under the fixed bar. */
-#sidebar {
-  top: 64px !important;
-  height: calc(100vh - 64px) !important;
-}
+/* Sidebar removed — collapse the left rail and pull main back to 0. */
+#sidebar { display: none !important; }
 #main-wrapper {
+  margin-left: 0 !important;
+  width: 100% !important;
   padding-top: 64px;
+}
+@media (min-width: 1200px) {
+  #main-wrapper { margin-left: 0 !important; }
 }
 /* Also nudge the back-to-top button up so it doesn't collide with the nav. */
 #back-to-top { z-index: 999; }
