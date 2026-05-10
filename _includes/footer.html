@@ -1,15 +1,30 @@
-{%- comment -%}
-  Landing-page-style footer-strip (matches ryanshook.org).
-{%- endcomment -%}
+<!-- The Footer -->
 
-<footer class="rs-footer-strip" aria-label="Site Info">
-  <div class="container rs-footer-inner">
-    <div>
-      <strong>Ryan Shook</strong> &middot; <a href="https://ryanshook.org">ryanshook.org</a>
-    </div>
-    <div>
-      <a href="mailto:contact@ryanshook.org">contact@ryanshook.org</a>
-      &middot; &copy; <time>{{ 'now' | date: '%Y' }}</time>
+<footer
+  id="footer"
+  class="d-flex w-100 justify-content-center"
+  data-bs-theme="{{ site.theme_mode | default: 'auto' }}"
+>
+  <div class="d-flex flex-column align-items-center">
+    <div class="footer-content">
+      <div class="social-icons mb-2">
+        <a href="https://x.com/ryanshook" target="_blank" rel="noopener" class="text-muted me-3">
+          <i class="fab fa-x-twitter fa-lg"></i>
+        </a>
+        <a href="https://facebook.com/ryanshook" target="_blank" rel="noopener" class="text-muted me-3">
+          <i class="fab fa-facebook fa-lg"></i>
+        </a>
+        <a href="https://linkedin.com/in/ryanshook" target="_blank" rel="noopener" class="text-muted me-3">
+          <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://instagram.com/ryanshook" target="_blank" rel="noopener" class="text-muted">
+          <i class="fab fa-instagram fa-lg"></i>
+        </a>
+      </div>
+      <p class="mb-1 text-muted">
+        <a href="https://ryanshook.org/" class="text-muted text-decoration-none me-2" style="border-bottom: 1px solid currentColor;">&larr; ryanshook.org</a>
+        &nbsp;&middot;&nbsp; &copy; {{ 'now' | date: '%Y' }} {{ site.social.name }}.
+      </p>
     </div>
   </div>
 </footer>
