@@ -281,6 +281,15 @@ blockquote.prompt-danger {
   border-color: var(--rs-accent-soft);
 }
 
+/* Hide preview thumbnail on the listing (image still renders on the
+   post page). When a post has post.image, Chirpy splits the card into
+   a 5/7 grid; collapse to a single full-width body. */
+#post-list .post-preview > .col-md-5 { display: none !important; }
+#post-list .post-preview > .col-md-7 {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
 /* link underline subtle */
 .content a:not(.img-link):not(.popup):not(.btn) {
   text-decoration: none;
