@@ -367,6 +367,21 @@ a.btn.btn-primary.rs-nav-cta {
   transform: translateY(-1px);
 }
 
+/* Chirpy 7.5+ ships shimmer markup on the listing page but doesn't load
+   home.min.js to remove it once the image is loaded — so the gradient
+   sweep loops forever. Just kill the sweep; the underlying image is
+   already there. */
+.preview-img.shimmer::before,
+.shimmer::before {
+  animation: none !important;
+  display: none !important;
+  background: none !important;
+}
+.preview-img.shimmer,
+.shimmer {
+  background: transparent !important;
+}
+
 /* hide the search markup we keep around for search-loader.html */
 .rs-search-hidden {
   position: absolute !important;
