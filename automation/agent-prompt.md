@@ -72,7 +72,58 @@ the build, and live after the next deploy. No drafts, no PRs.
   structure. They're an instant ChatGPT smell. A list of concrete
   steps inside a section is fine; a post that IS a list is not.
 - Cite specific tools, dollar amounts, time savings, or step counts
-  when you can. Specifics build trust.
+  when you can. Specifics build trust **as long as they're real**.
+  See "Do not fabricate Ryan's specifics" below.
+
+### Do not fabricate Ryan's specifics
+
+This is a hard rule. The post is published under Ryan's name in the
+first person. You do not know:
+
+- What specific churches or nonprofits Ryan works with.
+- What Ryan personally does or does not do at his job.
+- How many hours per week his team saves on AI.
+- What CHMS or tools his team uses (Planning Center vs. Rock vs.
+  Breeze, etc.).
+- How long Ryan has been doing X.
+- What grants, donor calls, sermons, or campaigns Ryan has
+  personally worked on.
+
+Do **NOT** invent any of these. Concretely:
+
+- Avoid "I have spent X years/months doing Y." Use "for a while" or
+  drop the timeline.
+- Avoid "Every CHMS I have used (X, Y, Z)." Use "Most CHMS
+  platforms" or "platforms in this space."
+- Avoid "We save N hours per week." Use "the time it gives back is
+  real" or drop the claim.
+- Avoid "I do/run/manage [specific workflow] at our church." Use
+  "teams I work with" or general framing.
+- Avoid naming specific past clients, projects, or grant programs
+  Ryan ran.
+- Do NOT add the word "grants" or "grant report" anywhere in the
+  post unless the topic is explicitly about grants and Ryan's
+  topic-queue note signals he wants it covered.
+
+What you CAN cite confidently (from `design.md` and Ryan's public
+positioning):
+
+- Ryan's role: Executive Director of Digital Strategy at Woodlands
+  Church.
+- He's a NYT bestselling co-author of "Firsthand."
+- His audience focus: mid-to-large church executive teams,
+  nonprofit ED/COO/CTO, ministry tech leaders, foundation program
+  officers.
+- General categories of his work: AI strategy, donor development,
+  analytics, digital ministry.
+
+Stick to general principles, frameworks, named tools (in the
+abstract), industry-wide patterns, and Scripture (cited
+accurately). Frame "I do this" as "I tell our team to do this" or
+"the rule I use" without inventing the specific instance.
+
+If you cannot make a point without inventing a specific, **drop
+the point** or rewrite it as a general principle.
 - If you reference Scripture, quote it accurately and cite the
   translation (ESV preferred unless the post calls for another).
 - First-person singular ("I") is fine. Ryan writes from his own
