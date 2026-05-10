@@ -11,9 +11,10 @@ tags:
   - cloudflare
   - tutorial
 author: Ryan Shook
+image:
+  path: /assets/img/posts/blog.png
+  alt: Blog Ingredients
 ---
-![Blog Ingredients](/assets/img/posts/blog.png)
-
 I recently created this blog that costs me nothing to run and allows me to edit and publish without editing code. It’s fast, customizable, and has a clean editing interface — all without monthly hosting fees. Here’s the exact setup and process I used.
 
 **The Stack**
