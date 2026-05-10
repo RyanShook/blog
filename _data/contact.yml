@@ -1,0 +1,20 @@
+# Sidebar bottom social row.
+# Renders into _includes/sidebar.html's `.sidebar-bottom` block.
+# Chirpy's case statement in sidebar.html only handles github/twitter/email/rss
+# specially; everything else needs an explicit `url`.
+
+- type: x-twitter
+  icon: 'fab fa-x-twitter'
+  url: 'https://x.com/ryanshook'
+
+- type: facebook
+  icon: 'fab fa-facebook'
+  url: 'https://facebook.com/ryanshook'
+
+- type: linkedin
+  icon: 'fab fa-linkedin'
+  url: 'https://linkedin.com/in/ryanshook'
+
+- type: instagram
+  icon: 'fab fa-instagram'
+  url: 'https://instagram.com/ryanshook'

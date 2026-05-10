@@ -1,7 +1,7 @@
 ---
-icon: fas fa-handshake
+icon: fas fa-envelope
 order: 5
-title: Work with me
-permalink: /work/
-redirect_to: https://ryanshook.org/#contact
+title: Email
+permalink: /email/
+redirect_to: mailto:contact@ryanshook.org
 ---
