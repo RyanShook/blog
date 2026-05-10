@@ -424,8 +424,9 @@ a.btn.btn-primary.rs-nav-cta {
   pointer-events: none !important;
 }
 
-@media (max-width: 850px) {
-  .rs-nav-links li:nth-child(-n+3) { display: none; }
+/* Mobile: keep only Blog + Contact in the nav (hide Work, Speaking). */
+@media (max-width: 720px) {
+  .rs-nav-links li:nth-child(-n+2) { display: none; }
 }
 
 /* footer: breathing room above + below the social row + credit line */
