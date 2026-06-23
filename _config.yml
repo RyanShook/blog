@@ -28,7 +28,7 @@ description: >- # used by seo meta and the atom feed
 
 # Default social-share image for non-post pages (listing, tag pages, etc.)
 # Posts override this via their own front-matter `image:`.
-social_preview_image: /assets/img/headshot.jpg
+social_preview_image: /assets/img/avatar.jpg
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -80,7 +80,7 @@ theme_mode: light # [light|dark] — match the landing page's hardcoded light ca
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/img/headshot.jpg"
+avatar: "/assets/img/avatar.jpg"
 
 # boolean type, the global switch for TOC in posts.
 toc: true
