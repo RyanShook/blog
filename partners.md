@@ -15,7 +15,7 @@ permalink: /partners/
 
   <div class="partner-card">
     <div class="partner-logo">
-      <img src="{{ '/assets/img/partners/pushpay.png' | relative_url }}" alt="Pushpay logo" width="64" height="64" loading="lazy">
+      <img src="/assets/img/partners/pushpay.png" alt="Pushpay logo" width="64" height="64">
     </div>
     <h2>Pushpay</h2>
     <p>Pushpay is a church engagement platform built around online giving, communication, and donor tools, aimed at helping churches grow generosity and stay connected with their congregation.</p>
@@ -24,7 +24,7 @@ permalink: /partners/
 
   <div class="partner-card">
     <div class="partner-logo">
-      <img src="{{ '/assets/img/partners/subsplash.png' | relative_url }}" alt="Subsplash logo" width="64" height="64" loading="lazy">
+      <img src="/assets/img/partners/subsplash.png" alt="Subsplash logo" width="64" height="64">
     </div>
     <h2>Subsplash</h2>
     <p>Subsplash is an all-in-one church app platform, combining a custom mobile app, website, online giving, and livestreaming so a church can stay connected with its community beyond Sunday.</p>
@@ -33,7 +33,7 @@ permalink: /partners/
 
   <div class="partner-card">
     <div class="partner-logo">
-      <img src="{{ '/assets/img/partners/planning-center.svg' | relative_url }}" alt="Planning Center logo" width="64" height="64" loading="lazy">
+      <img src="/assets/img/partners/planning-center.svg" alt="Planning Center logo" width="64" height="64">
     </div>
     <h2>Planning Center</h2>
     <p>Planning Center is a suite of church management software covering people, services planning, giving, check-ins, groups, and more, all in one connected system.</p>
@@ -42,7 +42,7 @@ permalink: /partners/
 
   <div class="partner-card">
     <div class="partner-logo">
-      <img src="{{ '/assets/img/partners/tap-giving.svg' | relative_url }}" alt="Tap.Giving logo" width="64" height="64" loading="lazy">
+      <img src="/assets/img/partners/tap-giving.svg" alt="Tap.Giving logo" width="64" height="64">
     </div>
     <h2>Tap.Giving</h2>
     <p>Tap.Giving makes NFC tap-to-give discs for churches. A quick tap opens the giving platform a church already uses, with no monthly fees and no new system to learn.</p>
