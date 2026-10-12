@@ -14,32 +14,39 @@ permalink: /partners/
 <div class="partners-grid">
 
   <div class="partner-card">
-    <div class="partner-icon" aria-hidden="true"><i class="fas fa-hand-holding-dollar"></i></div>
+    <div class="partner-logo">
+      <img src="{{ '/assets/img/partners/pushpay.png' | relative_url }}" alt="Pushpay logo" width="64" height="64" loading="lazy">
+    </div>
     <h2>Pushpay</h2>
     <p>Pushpay is a church engagement platform built around online giving, communication, and donor tools, aimed at helping churches grow generosity and stay connected with their congregation.</p>
     <a class="partner-link" href="https://www.pushpay.com/" target="_blank" rel="noopener">Visit pushpay.com &rarr;</a>
   </div>
 
   <div class="partner-card">
-    <div class="partner-icon" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></div>
+    <div class="partner-logo">
+      <img src="{{ '/assets/img/partners/subsplash.png' | relative_url }}" alt="Subsplash logo" width="64" height="64" loading="lazy">
+    </div>
     <h2>Subsplash</h2>
     <p>Subsplash is an all-in-one church app platform, combining a custom mobile app, website, online giving, and livestreaming so a church can stay connected with its community beyond Sunday.</p>
     <a class="partner-link" href="https://www.subsplash.com/" target="_blank" rel="noopener">Visit subsplash.com &rarr;</a>
   </div>
 
   <div class="partner-card">
-    <div class="partner-icon" aria-hidden="true"><i class="fas fa-calendar-check"></i></div>
+    <div class="partner-logo">
+      <img src="{{ '/assets/img/partners/planning-center.svg' | relative_url }}" alt="Planning Center logo" width="64" height="64" loading="lazy">
+    </div>
     <h2>Planning Center</h2>
     <p>Planning Center is a suite of church management software covering people, services planning, giving, check-ins, groups, and more, all in one connected system.</p>
     <a class="partner-link" href="https://www.planningcenter.com/" target="_blank" rel="noopener">Visit planningcenter.com &rarr;</a>
   </div>
 
   <div class="partner-card">
-    <div class="partner-icon" aria-hidden="true"><i class="fas fa-hand-pointer"></i></div>
+    <div class="partner-logo">
+      <img src="{{ '/assets/img/partners/tap-giving.svg' | relative_url }}" alt="Tap.Giving logo" width="64" height="64" loading="lazy">
+    </div>
     <h2>Tap.Giving</h2>
     <p>Tap.Giving makes NFC tap-to-give discs for churches. A quick tap opens the giving platform a church already uses, with no monthly fees and no new system to learn.</p>
     <a class="partner-link" href="https://tap.giving/" target="_blank" rel="noopener">Visit tap.giving &rarr;</a>
-    <span class="partner-disclosure">Full disclosure: this is my own company.</span>
   </div>
 
 </div>
