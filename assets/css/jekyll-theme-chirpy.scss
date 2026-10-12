@@ -541,3 +541,79 @@ footer#footer {
   color: var(--rs-accent) !important;
   transform: translateY(-2px);
 }
+
+/* ─── /partners/ page: card grid ────────────────────────────
+ * Standalone page, not in nav or any collection. Mirrors the
+ * "Cards (competency)" component described in design.md.
+ */
+.partners-intro {
+  font-size: 17px;
+  color: var(--rs-text-muted);
+  max-width: 680px;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+@media (max-width: 600px) {
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.partner-card {
+  background: #ffffff;
+  border: 1px solid var(--rs-border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 160ms ease, box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+.partner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(24, 24, 27, 0.08);
+  border-color: var(--rs-accent-soft);
+}
+
+.partner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--rs-surface);
+  color: var(--rs-accent);
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.partner-card h2 {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.partner-card p {
+  color: var(--rs-text-muted);
+  margin: 0 0 12px;
+}
+
+.partner-card .partner-link {
+  font-family: var(--rs-font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.partner-disclosure {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--rs-text-muted);
+}
